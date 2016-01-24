@@ -5,26 +5,26 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "portfolio_category".
+ * This is the model class for table "portfolio".
  *
  * @property integer $id
- * @property string $link
- * @property string $name
+ * @property integer $category_id
+ * @property string $title
  * @property string $description
- * @property integer $position
+ * @property integer $is_active
  * @property string $date_create
  * @property string $date_update
  *
- * @property Portfolio[] $portfolios
+ * @property PortfolioCategory $category
  */
-class PortfolioCategory extends \yii\db\ActiveRecord
+class Portfolio extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'portfolio_category';
+        return 'portfolio';
     }
 
     /**
@@ -33,12 +33,10 @@ class PortfolioCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['link', 'name', 'description'], 'required'],
-            [['position'], 'integer'],
+            [['category_id', 'is_active'], 'integer'],
+            [['title', 'description', 'is_active', 'date_create', 'date_update'], 'required'],
             [['date_create', 'date_update'], 'safe'],
-            [['link', 'name', 'description'], 'string', 'max' => 255],
-            [['link'], 'unique'],
-            [['name'], 'unique']
+            [['title', 'description'], 'string', 'max' => 255]
         ];
     }
 
@@ -49,10 +47,10 @@ class PortfolioCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'link' => 'Link',
-            'name' => 'Name',
+            'category_id' => 'Category ID',
+            'title' => 'Title',
             'description' => 'Description',
-            'position' => 'Position',
+            'is_active' => 'Is Active',
             'date_create' => 'Date Create',
             'date_update' => 'Date Update',
         ];
@@ -61,8 +59,8 @@ class PortfolioCategory extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPortfolios()
+    public function getCategory()
     {
-        return $this->hasMany(Portfolio::className(), ['category_id' => 'id']);
+        return $this->hasOne(PortfolioCategory::className(), ['id' => 'category_id']);
     }
 }

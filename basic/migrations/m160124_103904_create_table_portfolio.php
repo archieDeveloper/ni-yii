@@ -14,7 +14,6 @@ class m160124_103904_create_table_portfolio extends Migration
         $this->createTable('{{%portfolio}}', [
             'id' => Schema::TYPE_PK,
             'category_id' => Schema::TYPE_INTEGER . ' COMMENT "Индификатор категории"',
-            'component_image_id' => Schema::TYPE_INTEGER . ' COMMENT "Индификатор изображения"',
             'title' => Schema::TYPE_STRING . ' NOT NULL COMMENT "Заголовок работы"',
             'description' => Schema::TYPE_STRING . ' NOT NULL COMMENT "Описание работы"',
             'is_active' => Schema::TYPE_BOOLEAN . ' NOT NULL COMMENT "Активна ли работа?"',
@@ -31,20 +30,6 @@ class m160124_103904_create_table_portfolio extends Migration
             '{{%portfolio}}',
             'category_id',
             '{{%portfolio_category}}',
-            'id',
-            'SET NULL',
-            'CASCADE'
-        );
-        $this->createIndex(
-            'FK_portfolio_component_image',
-            '{{%portfolio}}',
-            'component_image_id'
-        );
-        $this->addForeignKey(
-            'FK_portfolio_component_image',
-            '{{%portfolio}}',
-            'component_image_id',
-            '{{%component_image}}',
             'id',
             'SET NULL',
             'CASCADE'
