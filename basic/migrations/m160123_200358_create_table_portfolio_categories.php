@@ -12,13 +12,13 @@ class m160123_200358_create_table_portfolio_categories extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
         $this->createTable('{{%portfolio_category}}', [
-            'id' => Schema::TYPE_PK,
-            'link' => Schema::TYPE_STRING . ' NOT NULL',
-            'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'description' => Schema::TYPE_STRING . ' NOT NULL',
-            'position' => Schema::TYPE_INTEGER,
-            'date_create' => Schema::TYPE_DATETIME,
-            'date_update' => Schema::TYPE_DATETIME
+            'id' => Schema::TYPE_PK . ' COMMENT "Индификатор категории"',
+            'link' => Schema::TYPE_STRING . ' NOT NULL UNIQUE COMMENT "Ссылка на категорию"',
+            'name' => Schema::TYPE_STRING . ' NOT NULL UNIQUE COMMENT "Имя категории"',
+            'description' => Schema::TYPE_STRING . ' NOT NULL COMMENT "Описание категории"',
+            'position' => Schema::TYPE_INTEGER . ' COMMENT "Позиция сортировки категории"',
+            'date_create' => Schema::TYPE_DATETIME . ' COMMENT "Дата создания категории"',
+            'date_update' => Schema::TYPE_DATETIME . ' COMMENT "Дата обновления категории"'
         ], $tableOptions);
     }
 
