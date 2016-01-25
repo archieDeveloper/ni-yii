@@ -19,6 +19,8 @@ use Yii;
  */
 class PortfolioCategory extends \yii\db\ActiveRecord
 {
+    public $label;
+    public $url;
     /**
      * @inheritdoc
      */
@@ -64,5 +66,19 @@ class PortfolioCategory extends \yii\db\ActiveRecord
     public function getPortfolios()
     {
         return $this->hasMany(Portfolio::className(), ['category_id' => 'id']);
+    }
+
+    public function getMenu($currentCategory)
+    {
+        $categories = $this->find()->select(['name', 'link'])->orderBy('position')->all();
+        $items = [];
+        foreach($categories as $category) {
+            $items[] = [
+                'label' => $category->name,
+                'url' => ['/portfolio', 'category' => $category->link],
+                'active' => $category->link === $currentCategory
+            ];
+        }
+        return $items;
     }
 }
