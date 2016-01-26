@@ -36,10 +36,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Выполненные работы', 'url' => ['/portfolio/index']],
-            ['label' => 'Статьи', 'url' => ['/article/index']],
-            ['label' => 'Контакты', 'url' => ['/contact/index']],
+            ['label' => 'Главная', 'url' => ['/']],
+            ['label' => 'Выполненные работы', 'url' => ['/portfolio']],
+            ['label' => 'Статьи', 'url' => ['/article']],
+            ['label' => 'Контакты', 'url' => ['/contact']],
         ],
     ]);
     NavBar::end();
