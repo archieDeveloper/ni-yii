@@ -25,7 +25,7 @@ class PortfolioController extends Controller
         $this->view->params['breadcrumbs'][] = [
             'label' => $this->view->title,
         ];
-        return $this->render('index', [
+        return $this->render('index.tpl', [
             'categories' => $portfolioCategoryModel->getMenu(),
             'portfolio' => $portfolio
         ]);
@@ -58,7 +58,7 @@ class PortfolioController extends Controller
         $this->view->params['breadcrumbs'][] = [
             'label' => $currentCategory->name,
         ];
-        return $this->render('index', [
+        return $this->render('index.tpl', [
             'categories' => $portfolioCategoryModel->getMenu($link),
             'portfolio' => $portfolio
         ]);
