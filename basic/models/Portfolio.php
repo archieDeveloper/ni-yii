@@ -22,6 +22,18 @@ class Portfolio extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return 'portfolio';

@@ -10,17 +10,16 @@ use yii\web\NotFoundHttpException;
 
 class PortfolioController extends Controller
 {
+    /**
+     * Событие выполненных работ
+     *
+     * @return string
+     */
     public function actionIndex()
     {
         $portfolioCategoryModel = new PortfolioCategory;
         $categories = $portfolioCategoryModel->getMenu();
-        $portfolioQuery = Portfolio::find()->where(['is_active' => 1]);
-        $portfolio = new ActiveDataProvider([
-            'query' => $portfolioQuery,
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-        ]);
+        $portfolio = $this->findPortfolios();
         $this->view->title = 'Выполненные работы';
         $this->view->params['breadcrumbs'][] = [
             'label' => $this->view->title,
@@ -31,6 +30,13 @@ class PortfolioController extends Controller
         ]);
     }
 
+    /**
+     * Событие категории выполненных работ
+     *
+     * @param string $link ссылка на категорию
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionCategory($link)
     {
         $portfolioCategoryModel = new PortfolioCategory;
@@ -39,16 +45,7 @@ class PortfolioController extends Controller
             throw new NotFoundHttpException('Страница не найдена.');
         }
         $categories = $portfolioCategoryModel->getMenu();
-        $portfolioQuery = Portfolio::find()->where([
-            'is_active' => 1,
-            'category_id' => $currentCategory->id
-        ]);
-        $portfolio = new ActiveDataProvider([
-            'query' => $portfolioQuery,
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-        ]);
+        $portfolio = $this->findPortfolios($currentCategory);
         $this->view->title = 'Выполненные работы | ' . $currentCategory->name;
         $this->view->params['breadcrumbs'][] = [
             'label' => 'Выполненные работы',
@@ -59,6 +56,29 @@ class PortfolioController extends Controller
             'categories' => $categories,
             'portfolio' => $portfolio
         ]);
+    }
+
+    /**
+     * Найти выполненные работы
+     *
+     * @param PortfolioCategory|null $category
+     * @return ActiveDataProvider
+     */
+    protected function findPortfolios(PortfolioCategory $category = null)
+    {
+        $portfolioQuery = Portfolio::find()->where([
+            'is_active' => 1,
+        ]);
+        if ($category !== null) {
+            $portfolioQuery->where(['category_id' => $category->id]);
+        }
+        $portfolio = new ActiveDataProvider([
+            'query' => $portfolioQuery,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+        return $portfolio;
     }
 
 }

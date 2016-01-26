@@ -4,11 +4,10 @@
     <div class="wrap-center">
         <div class="left-aside">
             <span>Категории</span>
-            <ul>
-                {Menu::widget([
-                    'items' => $categories
-                ])}
-            </ul>
+            {Menu::widget([
+                'items' => $categories,
+                'options' => ['class' => 'category-list']
+            ])}
         </div>
         <div class="wrap-products">
             <div id="portfolio-container">
