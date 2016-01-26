@@ -13,8 +13,8 @@ class PortfolioController extends Controller
     public function actionIndex()
     {
         $portfolioCategoryModel = new PortfolioCategory;
-        $portfolioModel = new Portfolio;
-        $portfolioQuery = $portfolioModel->find()->where(['is_active' => 1]);
+        $categories = $portfolioCategoryModel->getMenu();
+        $portfolioQuery = Portfolio::find()->where(['is_active' => 1]);
         $portfolio = new ActiveDataProvider([
             'query' => $portfolioQuery,
             'pagination' => [
@@ -26,7 +26,7 @@ class PortfolioController extends Controller
             'label' => $this->view->title,
         ];
         return $this->render('index.tpl', [
-            'categories' => $portfolioCategoryModel->getMenu(),
+            'categories' => $categories,
             'portfolio' => $portfolio
         ]);
     }
@@ -34,13 +34,12 @@ class PortfolioController extends Controller
     public function actionCategory($link)
     {
         $portfolioCategoryModel = new PortfolioCategory;
-        $currentCategory = $portfolioCategoryModel->find()
-            ->where(['link' => $link])->one();
+        $currentCategory = $portfolioCategoryModel->findOne(['link' => $link]);
         if (!$currentCategory) {
             throw new NotFoundHttpException('Страница не найдена.');
         }
-        $portfolioModel = new Portfolio;
-        $portfolioQuery = $portfolioModel->find()->where([
+        $categories = $portfolioCategoryModel->getMenu();
+        $portfolioQuery = Portfolio::find()->where([
             'is_active' => 1,
             'category_id' => $currentCategory->id
         ]);
@@ -55,11 +54,9 @@ class PortfolioController extends Controller
             'label' => 'Выполненные работы',
             'url' => '/portfolio.html'
         ];
-        $this->view->params['breadcrumbs'][] = [
-            'label' => $currentCategory->name,
-        ];
+        $this->view->params['breadcrumbs'][] = $currentCategory->name;
         return $this->render('index.tpl', [
-            'categories' => $portfolioCategoryModel->getMenu($link),
+            'categories' => $categories,
             'portfolio' => $portfolio
         ]);
     }
