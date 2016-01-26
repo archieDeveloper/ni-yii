@@ -3,6 +3,7 @@
 /* @var $model \app\models\Portfolio */
 
 ?>
+
 <article class="wrap-product">
     <a rel="<?=$model->category->link?>" href="/img/portfolio/big/<?php /*$model->img*/ ?>" data-id='<?=$model->id?>' title='<?=$model->title?>'>
         <img class="view-icon" src="/img/elem/zoomin.png" alt="<?=$model->title?>">

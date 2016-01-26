@@ -42,7 +42,10 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'suffix' => '.html'
+            'suffix' => '.html',
+            'rules' => [
+                'portfolio/category/<link:\w+>' => 'portfolio/category'
+            ]
         ]
     ],
     'modules' => [

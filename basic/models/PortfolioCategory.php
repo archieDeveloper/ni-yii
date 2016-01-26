@@ -68,14 +68,14 @@ class PortfolioCategory extends \yii\db\ActiveRecord
         return $this->hasMany(Portfolio::className(), ['category_id' => 'id']);
     }
 
-    public function getMenu($currentCategory)
+    public function getMenu($currentCategory = null)
     {
         $categories = $this->find()->select(['name', 'link'])->orderBy('position')->all();
         $items = [];
         foreach($categories as $category) {
             $items[] = [
                 'label' => $category->name,
-                'url' => ['/portfolio', 'category' => $category->link],
+                'url' => ['/portfolio/category/' . $category->link],
                 'active' => $category->link === $currentCategory
             ];
         }
