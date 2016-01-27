@@ -44,7 +44,7 @@ class PortfolioController extends Controller
         if (!$currentCategory) {
             throw new NotFoundHttpException('Страница не найдена.');
         }
-        $categories = $portfolioCategoryModel->getMenu();
+        $categories = $portfolioCategoryModel->getMenu($link);
         $portfolio = $this->findPortfolios($currentCategory);
         $this->view->title = 'Выполненные работы | ' . $currentCategory->name;
         $this->view->params['breadcrumbs'][] = [

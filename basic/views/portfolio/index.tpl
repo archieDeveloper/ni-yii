@@ -1,5 +1,6 @@
 {use class="yii\widgets\Menu"}
 {use class="yii\widgets\ListView"}
+{set layout="ni.tpl"}
 <div class="wrap">
     <div class="wrap-center">
         <div class="left-aside">
