@@ -1,6 +1,7 @@
 {use class="yii\helpers\Html"}
 {use class="app\assets\AppAsset"}
 {use class="yii\bootstrap\Nav"}
+{use class="yii\widgets\Breadcrumbs"}
 {AppAsset::register($this)|void}
 {$this->beginPage()}
 <!DOCTYPE html>
@@ -35,22 +36,14 @@
         <div class="cleaner"></div>
     </header>
     <nav id="nav">
-            {Nav::widget([
-                'items' => [
-                    ['label' => 'Главная', 'url' => ['/home']],
-                    ['label' => 'Выполненные работы', 'url' => ['/portfolio']],
-                    ['label' => 'Статьи', 'url' => ['/article']],
-                    ['label' => 'Контакты', 'url' => ['/contact']]
-                ]
-            ])}
-            {*<?php foreach ($page_list as $value): if($value->show_nav):?>*}
-                {*<?php switch ($value->type): case "template": ?>*}
-                    {*<li <?php if($value->id == 5){ echo 'class="end-list"'; } ?>><a href="/<?=$value->name;?><?php if (!empty($value->name)) : echo '.html'; endif;?>" <?php if($value->id == $page_info->id || $value->id == $page_info->parent) {echo 'id="nav_active"';} ?>><?=$value->title;?></a></li>*}
-                    {*<?php break; case "page": ?>*}
-                    {*<li <?php if($value->id == 5){ echo 'class="end-list"'; } ?>><a href="/<?=$value->name;?>.html" <?php if($value->id == $page_info->id || $value->id == $page_info->parent) {echo 'id="nav_active"';} ?>><?=$value->title;?></a></li>*}
-                    {*<?php break; endswitch; ?>*}
-            {*<?php endif; endforeach; ?>*}
-            {*<?php /*<a class="auction" href="/auctions.html">Аукцион<span>new</span></a>*/ ?>*}
+        {Nav::widget([
+            'items' => [
+                ['label' => 'Главная', 'url' => ['/home']],
+                ['label' => 'Выполненные работы', 'url' => ['/portfolio']],
+                ['label' => 'Статьи', 'url' => ['/article']],
+                ['label' => 'Контакты', 'url' => ['/contact']]
+            ]
+        ])}
         <div class="cleaner"></div>
     </nav>
     {if isset($slider_boolean)}
@@ -58,6 +51,18 @@
     {/if}
 </div>
 <div id="content_wrap">
+    <div class="wrap breadcrumb-wrap">
+        <div class="wrap-center">
+            {Breadcrumbs::widget([
+                'links' => $this->params['breadcrumbs']|default:[],
+                'homeLink' => [
+                    'label' => '',
+                    'url' => '',
+                    'template' => '<li><a href="/"><i class="flaticon-home11"></i></a></li>'
+                ]
+            ])}
+        </div>
+    </div>
     {$content}
 </div>
 <div id="footer_wrap">

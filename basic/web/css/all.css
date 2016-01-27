@@ -37,31 +37,24 @@
 }
 .about-list ul li {
   margin: 3px 0;
-  list-style-image: url("/img/elem/checkmark.png");
+  list-style-image: url("/images/ui/checkmark.png");
 }
 .breadcrumb {
   list-style-type: none;
   overflow: hidden;
   padding: 0;
+  margin-bottom: 0;
   border-radius: 5px;
   background: #eee;
 }
-.breadcrumb li {
-  float: left;
-  margin-right: 5px;
-  padding: 0;
-  font-size: 14px;
-  font-family: 'Boblic', "PT Sans", Arial, serif;
-  position: relative;
-}
-.breadcrumb li:after {
+.breadcrumb > li + li:before {
   content: '';
   display: block;
   position: absolute;
   top: 6px;
-  right: -4px;
+  left: -28px;
   width: 26px;
-  height: 26px;
+  height: 28px;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   -webkit-transform: rotate(-45deg);
@@ -69,9 +62,16 @@
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+.breadcrumb li {
+  float: left;
+  margin-right: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: 'Boblic', "PT Sans", Arial, serif;
+  position: relative;
+}
 .breadcrumb li a {
   text-decoration: none;
-  padding: 10px 20px;
   display: block;
   z-index: 1;
   position: relative;
@@ -166,7 +166,7 @@
   font-size: 0;
 }
 #page-up {
-  background: url("/img/elem/totop.png") no-repeat;
+  background: url("/images/ui/totop.png") no-repeat;
   height: 34px;
   width: 34px;
   position: fixed;
@@ -221,7 +221,7 @@
   display: none;
 }
 #nav li:after {
-  background: url("/img/elem/menu-marker.png") 0 0 no-repeat;
+  background: url("/images/ui/menu-marker.png") 0 0 no-repeat;
   content: '';
   display: inline-block;
   height: 10px;
@@ -287,12 +287,12 @@
   z-index: 900;
   position: fixed;
   top: 300px;
-  width: 210px;
+  width: 220px;
   left: 0;
   padding: 15px;
   border-radius: 0 5px 5px 0;
   background: #77b3d4;
-  margin-left: -190px;
+  margin-left: -170px;
   -webkit-transition: all 0.2s ease !important;
   transition: all 0.2s ease !important;
 }
@@ -737,7 +737,7 @@
   text-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 .desc-slide .pink {
-  background: #e61f50 url("/img/elem/menu-tail.gif");
+  background: #e61f50 url("/images/ui/menu-tail.gif");
   padding: 20px 50px;
   font-size: 35px;
   display: inline-block;
@@ -745,7 +745,7 @@
   border-radius: 3px;
 }
 .desc-slide .gray {
-  background: #242424 url("/img/elem/main-tail.gif");
+  background: #242424 url("/images/ui/main-tail.gif");
   padding: 20px 50px;
   font-size: 20px;
   display: inline-block;
@@ -805,7 +805,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   display: block;
   width: 30px;
   height: 30px;
-  background: url("/img/soc_icons.png") no-repeat;
+  background: url("/images/ui/soc_icons.png") no-repeat;
   margin-right: 4px;
 }
 .vk-icon {
@@ -1012,14 +1012,14 @@ a.pseudo {
   padding: 50px 0;
 }
 .wrap.pink {
-  background: #d32f58 url("/img/bg-wrap.png") fixed;
+  background: #d32f58 url("/images/ui/bg-wrap.png") fixed;
   color: #fff;
 }
 .wrap.pink h2 {
   color: #fff;
 }
 .wrap.gray {
-  background: #eee url("/img/elem/sharp_pattern.png");
+  background: #eee url("/images/ui/sharp_pattern.png");
   color: #444;
 }
 .wrap.gray p {

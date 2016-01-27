@@ -32,5 +32,5 @@
 
 <div id="obr_sv" class="obr_sv">
     <span>Есть вопросы<br>Закажите обратный звонок</span>
-    <img src="/img/elem/callback_button.png" alt=""/>
+    <img src="/images/ui/callback_button.png" alt=""/>
 </div>
