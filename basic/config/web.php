@@ -8,6 +8,7 @@ $config = [
     'language' => 'ru-RU',
     'bootstrap' => ['log'],
     'defaultRoute' => 'home',
+    'layout' => 'ni.tpl',
     'components' => [
         'view' => [
             'renderers' => [

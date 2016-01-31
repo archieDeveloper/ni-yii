@@ -71,7 +71,11 @@ class PortfolioCategory extends \yii\db\ActiveRecord
     public function getMenu($currentCategory = null)
     {
         $categories = $this->find()->select(['name', 'link'])->orderBy('position')->all();
-        $items = [];
+        $items = [[
+            'label' => 'Все',
+            'url' => ['/portfolio'],
+            'active' => !$currentCategory
+        ]];
         foreach($categories as $category) {
             $items[] = [
                 'label' => $category->name,
