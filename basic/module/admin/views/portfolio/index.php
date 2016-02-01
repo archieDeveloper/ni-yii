@@ -1,16 +1,37 @@
-<div class="wrap">
-    <div class="wrap-center">
-        <div class="admin-default-index">
-            <h1><?= $this->context->action->uniqueId ?></h1>
-            <p>
-                This is the view content for action "<?= $this->context->action->id ?>".
-                The action belongs to the controller "<?= get_class($this->context) ?>"
-                in the "<?= $this->context->module->id ?>" module.
-            </p>
-            <p>
-                You may customize this page by editing the following file:<br>
-                <code><?= __FILE__ ?></code>
-            </p>
-        </div>
-    </div>
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Portfolios';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="portfolio-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Create Portfolio', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'category.name',
+            'title',
+            'description',
+            'date_create',
+            'date_update',
+            'image',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
 </div>

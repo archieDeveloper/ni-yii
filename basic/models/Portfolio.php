@@ -3,6 +3,10 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\AttributeBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "portfolio".
@@ -17,8 +21,10 @@ use Yii;
  *
  * @property PortfolioCategory $category
  */
-class Portfolio extends \yii\db\ActiveRecord
+class Portfolio extends ActiveRecord
 {
+    public $image;
+
     /**
      * @inheritdoc
      */
@@ -27,6 +33,19 @@ class Portfolio extends \yii\db\ActiveRecord
         return [
             'image' => [
                 'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ],
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'date_create',
+                'updatedAtAttribute' => 'date_update',
+                'value' => new Expression('NOW()'),
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'is_active'
+                ],
+                'value' => 1,
             ]
         ];
     }
@@ -45,9 +64,8 @@ class Portfolio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'is_active'], 'integer'],
-            [['title', 'description', 'is_active', 'date_create', 'date_update'], 'required'],
-            [['date_create', 'date_update'], 'safe'],
+            [['category_id', 'is_active', 'date_create', 'date_update'], 'integer'],
+            [['title', 'description'], 'required'],
             [['title', 'description'], 'string', 'max' => 255]
         ];
     }
@@ -59,12 +77,13 @@ class Portfolio extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
-            'title' => 'Title',
-            'description' => 'Description',
-            'is_active' => 'Is Active',
-            'date_create' => 'Date Create',
-            'date_update' => 'Date Update',
+            'category_id' => 'Категория',
+            'title' => 'Заголовок',
+            'description' => 'Описание',
+            'is_active' => 'Активна',
+            'date_create' => 'Дата создания',
+            'date_update' => 'Дата обновления',
+            'image' => 'Изображение'
         ];
     }
 
@@ -75,4 +94,15 @@ class Portfolio extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PortfolioCategory::className(), ['id' => 'category_id']);
     }
+
+    public function remove()
+    {
+        $this->updateAttributes(['is_active' => 0]);
+    }
+
+    public function restore()
+    {
+        $this->updateAttributes(['is_active' => 1]);
+    }
+
 }
