@@ -18,7 +18,8 @@ class AdminAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/admin/all.min.css',
+        'css/admin.css',
+        'css/admin_form.css',
         'fonts/boblic/boblic.css',
         'css/flaticon.css'
     ];

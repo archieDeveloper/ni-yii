@@ -68,8 +68,13 @@ $config = [
             'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
             'placeHolderPath' => '@webroot/images/placeHolder.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
         ],
+        'user' => [
+            'class' => 'dektrium\user\Module',
+        ],
         'admin' => [
             'class' => 'app\module\admin\Module',
+            'layout' => 'ni.tpl',
+            'defaultRoute' => 'dashboard',
         ],
     ],
     'params' => $params,
