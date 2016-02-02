@@ -27,3 +27,5 @@ phpunit.phar
 /phpunit.xml
 
 /nodejs/node_modules/
+
+/basic/web/images/uploads/

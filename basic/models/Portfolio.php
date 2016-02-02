@@ -2,11 +2,13 @@
 
 namespace app\models;
 
+use rico\yii2images\models\Image;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "portfolio".
@@ -23,7 +25,6 @@ use yii\db\Expression;
  */
 class Portfolio extends ActiveRecord
 {
-    public $image;
 
     /**
      * @inheritdoc
@@ -65,7 +66,7 @@ class Portfolio extends ActiveRecord
     {
         return [
             [['category_id', 'is_active', 'date_create', 'date_update'], 'integer'],
-            [['title', 'description'], 'required'],
+            [['image'], 'required'],
             [['title', 'description'], 'string', 'max' => 255]
         ];
     }
@@ -95,6 +96,15 @@ class Portfolio extends ActiveRecord
         return $this->hasOne(PortfolioCategory::className(), ['id' => 'category_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImg()
+    {
+        return $this->hasOne(Image::className(), ['itemId' => 'id'])
+            ->onCondition(['modelName' => $this->tableName()]);
+    }
+
     public function remove()
     {
         $this->updateAttributes(['is_active' => 0]);
@@ -103,6 +113,12 @@ class Portfolio extends ActiveRecord
     public function restore()
     {
         $this->updateAttributes(['is_active' => 1]);
+    }
+
+    public function beforeValidate()
+    {
+        $this->image = UploadedFile::getInstance($this, 'image');
+        return parent::beforeValidate();
     }
 
 }

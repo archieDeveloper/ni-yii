@@ -1104,6 +1104,7 @@ a.pseudo {
   border: 3px solid #eee;
   background: #fff;
   border-radius: 3px;
+  position: relative;
 }
 .wrap-product:hover {
   border-color: #e92253;

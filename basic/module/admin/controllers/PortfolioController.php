@@ -34,11 +34,16 @@ class PortfolioController extends Controller
      */
     public function actionIndex()
     {
+        $portfolioQuery = Portfolio::find()->where(['is_active' => 1])->with(['img', 'category']);
         $dataProvider = new ActiveDataProvider([
-            'query' => Portfolio::find()->where(['is_active' => 1])->with('category'),
+            'query' => $portfolioQuery,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
-
-        return $this->render('index', [
+        $this->view->title = 'Выполненные работы';
+        $this->view->params['breadcrumbs'][] = $this->view->title;
+        return $this->render('index.tpl', [
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -50,7 +55,7 @@ class PortfolioController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->render('view.tpl', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -65,13 +70,13 @@ class PortfolioController extends Controller
         $model = new Portfolio();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->image = UploadedFile::getInstance($model, 'image');
             if($model->image) {
                 $path = Yii::getAlias('@webroot/images/uploads/')
                     . $model->image->baseName . '.' . $model->image->extension;
                 $model->image->saveAs($path);
                 $model->attachImage($path);
             }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $this->view->title = 'Добавить работу';
@@ -95,7 +100,7 @@ class PortfolioController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view.tpl', 'id' => $model->id]);
         } else {
             $this->view->title = 'Update Portfolio: ' . ' ' . $model->title;
             $this->view->params['breadcrumbs'][] = ['label' => 'Portfolios', 'url' => ['index']];

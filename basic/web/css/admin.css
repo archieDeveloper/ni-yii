@@ -301,6 +301,16 @@ body {
   margin: 2px 0;
 }
 
+.pagination li.active a {
+  background: #eee;
+  color: #777;
+  border: 0;
+  border-bottom: 0;
+  padding: 2px 8px;
+  box-shadow: none;
+  margin-top: 1px;
+}
+
 .pagination li a {
   display: block;
   padding: 10px;
@@ -310,6 +320,7 @@ body {
   font-weight: bold;
   font-size: 13px;
   padding: 1px 8px;
+  line-height: 2;
   cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
@@ -321,16 +332,6 @@ body {
 .pagination li a:hover {
   background: #EDEDED;
   border: 1px solid #D3D3D3;
-}
-
-.pagination li a.active {
-  background: #eee;
-  color: #777;
-  border: 0;
-  border-bottom: 0;
-  padding: 2px 8px;
-  box-shadow: none;
-  margin-top: 1px;
 }
 
 .button {

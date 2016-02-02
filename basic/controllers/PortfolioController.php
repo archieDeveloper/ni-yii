@@ -73,7 +73,7 @@ class PortfolioController extends Controller
             $portfolioQuery->where(['category_id' => $category->id]);
         }
         $portfolio = new ActiveDataProvider([
-            'query' => $portfolioQuery,
+            'query' => $portfolioQuery->with('category'),
             'pagination' => [
                 'pageSize' => 10,
             ],
