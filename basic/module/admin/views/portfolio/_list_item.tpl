@@ -1,12 +1,6 @@
 <li class="js-item" data-id="106">
-    {print_r($model->getImage())}
     <div class="img">
-        <img src="{if $model->img}{$model->img->getUrl('200x')}{/if}" alt="">
-        <img src="{if $model->img}{$model->img->getUrl('200x')}{/if}" alt="">
-        <img src="{if $model->img}{$model->img->getUrl('200x')}{/if}" alt="">
-        <img src="{if $model->img}{$model->img->getUrl('200x')}{/if}" alt="">
-        <img src="{if $model->img}{$model->img->getUrl('200x')}{/if}" alt="">
-        <img src="{if $model->img}{$model->img->getUrl('200x')}{/if}" alt="">
+        <img src="{if $model->cover}{$model->cover->getUrl('200x')}{else}{/if}" alt="">
         <a class="button trash js-trash" href="javascript:void(0);"><i class="flaticon-trash3"></i> В корзину</a>
         <span class="edit-img" data-id="106"><i class="flaticon-photo7"></i> Изменить миниатюру</span>
     </div>

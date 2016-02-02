@@ -34,7 +34,10 @@ class PortfolioController extends Controller
      */
     public function actionIndex()
     {
-        $portfolioQuery = Portfolio::find()->where(['is_active' => 1])->with(['img', 'category']);
+        $portfolioQuery = Portfolio::find()
+            ->where(['is_active' => 1])
+            ->with(['cover', 'category'])
+            ->orderBy(['date_create' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $portfolioQuery,
             'pagination' => [

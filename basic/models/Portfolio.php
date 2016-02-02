@@ -25,6 +25,7 @@ use yii\web\UploadedFile;
  */
 class Portfolio extends ActiveRecord
 {
+    public $image;
 
     /**
      * @inheritdoc
@@ -99,7 +100,7 @@ class Portfolio extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getImg()
+    public function getCover()
     {
         return $this->hasOne(Image::className(), ['itemId' => 'id'])
             ->onCondition(['modelName' => $this->tableName()]);
