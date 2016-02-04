@@ -48,9 +48,18 @@ class Portfolio extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => 'is_active'
                 ],
                 'value' => 1,
-            ]
+            ],
         ];
     }
+
+//    public function afterFind()
+//    {
+//        if (empty($this->cover)) {
+//            $this->cover = 1;
+//        }
+//        parent::afterFind();
+//
+//    }
 
     /**
      * @inheritdoc
@@ -80,12 +89,14 @@ class Portfolio extends ActiveRecord
         return [
             'id' => 'ID',
             'category_id' => 'Категория',
+            'categoryName' => 'Имя категории',
             'title' => 'Заголовок',
             'description' => 'Описание',
             'is_active' => 'Активна',
             'date_create' => 'Дата создания',
             'date_update' => 'Дата обновления',
-            'image' => 'Изображение'
+            'image' => 'Изображение',
+            'cover' => 'Изображение'
         ];
     }
 
@@ -95,6 +106,11 @@ class Portfolio extends ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(PortfolioCategory::className(), ['id' => 'category_id']);
+    }
+
+    public function getCategoryName()
+    {
+        return $this->category->name;
     }
 
     /**

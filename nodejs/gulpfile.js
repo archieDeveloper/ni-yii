@@ -12,6 +12,8 @@ gutil   = require('gulp-util');
 paths = {};
 paths.stylus      = ['source/stylus/main.styl'];
 paths.stylusWatch = ['source/stylus/**/*.styl'];
+paths.stylusAdmin      = ['source/stylus/admin/index.styl'];
+paths.stylusAdminWatch = ['source/stylus/admin/**/*.styl'];
 paths.js          = ['source/coffee/**/*.js'];
 paths.coffee      = ['source/coffee/**/*.coffee'];
 paths.smarty      = ['../basic/views/**/*.tpl'];
@@ -20,6 +22,14 @@ paths.webpack = [
   paths.js,
   paths.coffee
 ];
+
+gulp.task('stylus-admin', function() {
+  return gulp.src(paths.stylusAdmin)
+      .pipe(stylus())
+      .on('error', console.log)
+      .pipe(concat('all.css'))
+      .pipe(gulp.dest('../basic/web/css/admin'));
+});
 
 gulp.task('stylus', function() {
   return gulp.src(paths.stylus)
@@ -50,6 +60,7 @@ gulp.task('watch', function() {
   gulp.watch(paths.webpack, ['webpack']);
   gulp.watch(paths.stylusWatch, ['stylus']);
   gulp.watch(paths.stylusWatch, ['stylus-min']);
+  gulp.watch(paths.stylusAdminWatch, ['stylus-admin']);
 });
 
 gulp.task('default', ['stylus', 'stylus-min', 'webpack', 'watch']);

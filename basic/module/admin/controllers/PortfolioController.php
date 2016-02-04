@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use app\models\PortfolioSearch;
 
 /**
  * PortfolioController implements the CRUD actions for Portfolio model.
@@ -34,19 +34,15 @@ class PortfolioController extends Controller
      */
     public function actionIndex()
     {
-        $portfolioQuery = Portfolio::find()
-            ->where(['is_active' => 1])
-            ->with(['cover', 'category'])
-            ->orderBy(['date_create' => SORT_DESC]);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $portfolioQuery,
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-        ]);
+        $this->layout = 'newNi.tpl';
+
+        $searchModel = new PortfolioSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         $this->view->title = 'Выполненные работы';
         $this->view->params['breadcrumbs'][] = $this->view->title;
         return $this->render('index.tpl', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
