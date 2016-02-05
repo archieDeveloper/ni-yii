@@ -31,6 +31,8 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+        '\rmrevin\yii\fontawesome\AssetBundle',
+        'justinvoelker\awesomebootstrapcheckbox\Asset'
     ];
 }

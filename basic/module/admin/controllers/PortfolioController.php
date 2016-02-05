@@ -37,6 +37,7 @@ class PortfolioController extends Controller
         $this->layout = 'newNi.tpl';
 
         $searchModel = new PortfolioSearch();
+//        print_r(Yii::$app->request->queryParams); die;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $this->view->title = 'Выполненные работы';

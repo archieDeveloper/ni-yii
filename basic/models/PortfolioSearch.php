@@ -5,7 +5,6 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Portfolio;
 
 /**
  * PortfolioSearch represents the model behind the search form about `app\models\Portfolio`.
@@ -43,20 +42,24 @@ class PortfolioSearch extends Portfolio
      */
     public function search($params)
     {
+        $loadParams = [
+            'PortfolioSearch' => $params
+        ];
         $query = Portfolio::find()
             ->where(['is_active' => 1])
-            ->with(['cover', 'category']);
+            ->with(['cover', 'category'])
+            ->orderBy(['date_create' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => false,
             'pagination' => [
-                'pageSize' => 10
+                'pageSize' => 5
             ]
         ]);
 
 
-        $this->load($params);
+        $this->load($loadParams);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails

@@ -5,6 +5,9 @@
 {use class="yii\widgets\ListView"}
 {use class="app\models\PortfolioCategory"}
 {use class="yii\helpers\ArrayHelper"}
+{use class="yii\widgets\Pjax"}
+{use class="microinginer\dropDownActionColumn\DropDownActionColumn"}
+
 <div class="wrap-header">
     <div class="row">
         <div class="col-xs-6">
@@ -18,11 +21,23 @@
 </div>
 <div class="portfolio-index">
 
+    <div class="checkbox checkbox-success">
+        <input id="checkbox" type="checkbox">
+    </div>
+
+
+    {Html::activeDropDownList(
+        $searchModel,
+        'category_id',
+        ArrayHelper::map(PortfolioCategory::find()->orderBy('position')->all(), 'id', 'name'),
+        ['class' => 'btn btn-default', 'prompt' => 'Фильтр по категории']
+    )}
+    {Pjax::begin()|void}
     {GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'layout' => '{summary}{pager}{items}{pager}',
         'columns' => [
-            ['class' => 'yii\grid\CheckboxColumn'],
+            ['class' => 'justinvoelker\awesomebootstrapcheckbox\CheckboxColumn'],
             [
                 'attribute' => 'img',
                 'label' => false,
@@ -41,12 +56,10 @@
             ],
             'title',
             'description',
-
-            [
-                'class' => 'yii\grid\ActionColumn'
-            ]
+            ['class' => DropDownActionColumn::className()]
         ]
     ])}
+    {Pjax::end()|void}
 
     {* <ul class="list-page js-portfolio-list">
         {ListView::widget([
