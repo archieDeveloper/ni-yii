@@ -24,27 +24,30 @@
 </head>
 <body>
 {$this->beginBody()}
+<div class="wrap-color-line">
+    {for $wclItem=1 to 7}<div class="wcl-item-{$wclItem}"></div>{/for}
+</div>
 <div class="wrap-sidebar">
     <div class="logo">
         <span class="logo-header">Админка</span>
-        <a href="#" class="go-home"></a>
+        <a href="/" class="go-home" target="_blank" title="Посмотреть сайт"><i class="flaticon-export"></i></a>
     </div>
     <span class="sidebar-block-title"><i class="flaticon-menu10"></i> Меню</span>
     <ul class="nav">
-        <li><a href="/{$this->context->module->id}.html">Консоль</a></li>
+        <li><a href="/{$this->context->module->id}.html"><span class="glyphicon glyphicon-dashboard nav-glyphicon" aria-hidden="true"></span>Консоль</a></li>
         <li class="separator"></li>
-        <li><a href="/{$this->context->module->id}/pages.html">Страницы</a></li>
+        <li><a href="/{$this->context->module->id}/pages.html"><span class="glyphicon glyphicon-duplicate nav-glyphicon" aria-hidden="true"></span>Страницы</a></li>
         <li {(!empty($page_controller) && $page_controller == 'portfolio') ? 'class="active"' : ''}>
-            <a href="/{$this->context->module->id}/portfolio.html">Выполненные работы</a>
+            <a href="/{$this->context->module->id}/portfolio.html"><span class="glyphicon glyphicon-briefcase nav-glyphicon" aria-hidden="true"></span>Выполненные работы</a>
         </li>
         <li {(!empty($page_controller) && $page_controller == 'articles') ? 'class="active"' : ''}>
-            <a href="/{$this->context->module->id}/articles.html">Статьи</a>
+            <a href="/{$this->context->module->id}/articles.html"><span class="glyphicon glyphicon-align-left nav-glyphicon" aria-hidden="true"></span>Статьи</a>
         </li>
-        <li><a href="/{$this->context->module->id}/contacts.html">Контакты</a></li>
-        <li><a href="/{$this->context->module->id}/feedback.html">Обратная связь</a></li>
+        <li><a href="/{$this->context->module->id}/contacts.html"><span class="glyphicon glyphicon-phone nav-glyphicon" aria-hidden="true"></span>Контакты</a></li>
+        <li><a href="/{$this->context->module->id}/feedback.html"><span class="glyphicon glyphicon-headphones nav-glyphicon" aria-hidden="true"></span>Обратная связь</a></li>
         <li class="separator"></li>
-        <li><a href="/{$this->context->module->id}/feedback.html">Модераторы</a></li>
-        <li><a href="/{$this->context->module->id}/feedback.html">Настройки</a></li>
+        <li><a href="/{$this->context->module->id}/feedback.html"><span class="glyphicon glyphicon-user nav-glyphicon" aria-hidden="true"></span>Модераторы</a></li>
+        <li><a href="/{$this->context->module->id}/feedback.html"><span class="glyphicon glyphicon-cog nav-glyphicon" aria-hidden="true"></span>Настройки</a></li>
     </ul>
 </div>
 <div class="container-fluid wrap-container">

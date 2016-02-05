@@ -1,13 +1,13 @@
 .wrap-container {
     margin-left: 250px;
-    margin-top: 75px;
+    margin-top: 81px;
     padding: 30px 40px;
 }
 
 .wrap-sidebar {
     width: 250px;
     position: fixed;
-    top: 0;
+    top: 6px;
     left: 0;
     bottom: 0;
     background-color: #eee;
@@ -27,19 +27,21 @@
 .wrap-header {
     position: fixed;
     left: 250px;
-    top: 0;
+    top: 6px;
     right: 0;
     height: 75px;
     line-height: 75px;
     background: #F7F7F7;
     padding: 0 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    z-index: 5;
 }
 
 .logo {
-    background-color: #2C3E50;
     position: relative;
     height: 75px;
     line-height: 75px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .logo > .logo-header {
@@ -60,7 +62,58 @@
     position: absolute;
     right: 0;
     top: 0;
-    background-color: #4F565D;
-    color: #eeeeee;
-    font-size: 28px;
+    background-color: #E2E2E2;
+    color: #9E9E9E;
+    transition: all 0.2s;
+}
+
+.logo > .go-home:hover {
+    color: #3498DB;
+}
+
+.logo > .go-home > i[class^="flaticon-"] {
+    font-size: 24px;
+}
+
+.wrap-color-line {
+    height: 6px;
+    overflow: hidden
+}
+
+.wrap-color-line div {
+    width: 14.28%;
+    height: 100%;
+    float: left
+}
+
+.wcl-item-1 {
+    background: #C3E27A
+}
+.wcl-item-2 {
+    background: #F7FEC6
+}
+.wcl-item-3 {
+    background: #FFCE63
+}
+.wcl-item-4 {
+    background: #F17163
+}
+.wcl-item-5 {
+    background: #DA98BB
+}
+.wcl-item-6 {
+    background: #C59BE0
+}
+.wcl-item-7 {
+    background: #979DCC
+}
+
+.nav-glyphicon {
+    font-size: 18px;
+    vertical-align: sub;
+    margin-right: 10px;
+}
+
+.nav > li.separator {
+    height: 10px;
 }

@@ -6,10 +6,13 @@ use app\models\PortfolioCategory;
 use Yii;
 use app\models\Portfolio;
 use yii\data\ActiveDataProvider;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\PortfolioSearch;
+use yii\web\Request;
 
 /**
  * PortfolioController implements the CRUD actions for Portfolio model.
@@ -37,7 +40,6 @@ class PortfolioController extends Controller
         $this->layout = 'newNi.tpl';
 
         $searchModel = new PortfolioSearch();
-//        print_r(Yii::$app->request->queryParams); die;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $this->view->title = 'Выполненные работы';
@@ -118,10 +120,19 @@ class PortfolioController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
      */
-    public function actionDelete($id)
+    public function actionDelete($id = null)
     {
-        $this->findModel($id)->remove();
+        if ($id === null) {
+            $selection = (array)Yii::$app->request->post('selection');
+            if (count($selection)) {
+                Portfolio::updateAll(['is_active' => 0], ['id' => $selection]);
+            }
+        } else {
+            $this->findModel($id)->remove();
+        }
 
         return $this->redirect(['index']);
     }
