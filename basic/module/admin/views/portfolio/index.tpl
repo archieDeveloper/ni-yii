@@ -36,6 +36,10 @@
     {GridView::widget([
         'dataProvider' => $dataProvider,
         'layout' => '{summary}{pager}{items}{pager}',
+        'pager' => [
+            'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
+            'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
+        ],
         'columns' => [
             ['class' => 'justinvoelker\awesomebootstrapcheckbox\CheckboxColumn'],
             [
@@ -44,21 +48,17 @@
                 'format' => 'image',
                 'value' => GridHelper::getUrlImage()
             ],
-            [
-                'attribute' => 'category_id',
-                'filter' => Html::activeDropDownList(
-                    $searchModel,
-                    'category_id',
-                    ArrayHelper::map(PortfolioCategory::find()->orderBy('position')->all(), 'id', 'name'),
-                    ['class' => 'form-control', 'prompt' => '']
-                ),
-                'value' => 'categoryName'
-            ],
+            'categoryName',
             'title',
             'description',
-            ['class' => DropDownActionColumn::className()],
             [
-                'class' => 'yii\grid\ActionColumn'
+                'class' => 'yii\grid\ActionColumn',
+                'header' => 'Действия',
+                'buttons' => [
+                    'update' => GridHelper::getButtonEdit(),
+                    'delete' => GridHelper::getButtonDelete()
+                ],
+                'template'=>'<div class="btn-group">{update}{delete}</div>'
             ]
         ]
     ])}
@@ -75,7 +75,7 @@
 {Html::endForm()}
 
 
-<icons>
+<icons style="zoom: 2">
     <i class="flaticon-align7"></i>
     <i class="flaticon-arrow63"></i>
     <i class="flaticon-arrow64"></i>
@@ -171,5 +171,4 @@
     <i class="flaticon-volume12"></i>
     <i class="flaticon-volume5"></i>
     <i class="flaticon-window12"></i>
-
 </icons>

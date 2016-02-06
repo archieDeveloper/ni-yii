@@ -30,9 +30,8 @@
 <div class="wrap-sidebar">
     <div class="logo">
         <span class="logo-header">Админка</span>
-        <a href="/" class="go-home" target="_blank" title="Посмотреть сайт"><i class="flaticon-export"></i></a>
+        <a href="/" class="go-home" data-toggle="tooltip" data-placement="bottom" target="_blank" title="Просмотреть сайт"><i class="flaticon-export"></i></a>
     </div>
-    <span class="sidebar-block-title"><i class="flaticon-menu10"></i> Меню</span>
     <ul class="nav">
         <li><a href="/{$this->context->module->id}.html"><span class="glyphicon glyphicon-dashboard nav-glyphicon" aria-hidden="true"></span>Консоль</a></li>
         <li class="separator"></li>
@@ -55,6 +54,12 @@
 </div>
 
 {$this->endBody()}
+
+<script>
+    $(function () {
+        $('[title]').tooltip();
+    })
+</script>
 </body>
 </html>
 {$this->endPage()}
