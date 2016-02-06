@@ -5,8 +5,8 @@ use rico\yii2images\models\PlaceHolder;
 
 class ImageHelper
 {
-    public static function getPlaceHolder()
+    public static function getImage($model, $size = null)
     {
-        return new PlaceHolder();
+        return $model->cover ? $model->cover->getUrl($size) : (new PlaceHolder())->getUrl($size);
     }
 }
