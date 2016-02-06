@@ -122,3 +122,25 @@
 .nav > li.separator {
     height: 10px;
 }
+
+.portfolio-item {
+    border-radius: 5px;
+    padding: 10px 0;
+    background: #eee;
+    margin: 20px 0;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.summary {
+    font-family: 'Clear Sans', "PT Sans", Arial, serif;
+    line-height: 30px;
+    color: #aaa;
+}
+

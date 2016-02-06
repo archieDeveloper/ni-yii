@@ -8,16 +8,13 @@
 {use class="yii\widgets\Pjax"}
 {use class="microinginer\dropDownActionColumn\DropDownActionColumn"}
 
-
-{Html::beginForm(['delete'],'post')}
-
 <div class="wrap-header">
     <div class="row">
         <div class="col-xs-6">
-            <span class="h2">{Html::encode($this->title)}</span></div>
+            <span class="h2">{Html::encode($this->title)}</span>
+        </div>
         <div class="col-xs-6 text-right">
             <div class="btn-group">
-                {Html::submitButton('<i class="flaticon-trash3"></i> Удалить', ['class' => 'btn btn-danger'])}
                 {Html::a('<i class="flaticon-plus13"></i> Добавить работу', ['create'], [
                     'class' => 'btn btn-success'
                 ])}
@@ -26,56 +23,20 @@
     </div>
 </div>
 
-    {Html::activeDropDownList(
-        $searchModel,
-        'category_id',
-        ArrayHelper::map(PortfolioCategory::find()->orderBy('position')->all(), 'id', 'name'),
-        ['class' => 'btn btn-default', 'prompt' => 'Фильтр по категории']
-    )}
-    {Pjax::begin()|void}
-    {GridView::widget([
-        'dataProvider' => $dataProvider,
-        'layout' => '{summary}{pager}{items}{pager}',
-        'pager' => [
-            'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
-            'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
-        ],
-        'columns' => [
-            ['class' => 'justinvoelker\awesomebootstrapcheckbox\CheckboxColumn'],
-            [
-                'attribute' => 'img',
-                'label' => false,
-                'format' => 'image',
-                'value' => GridHelper::getUrlImage()
-            ],
-            'categoryName',
-            'title',
-            'description',
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'header' => 'Действия',
-                'buttons' => [
-                    'update' => GridHelper::getButtonEdit(),
-                    'delete' => GridHelper::getButtonDelete()
-                ],
-                'template'=>'<div class="btn-group">{update}{delete}</div>'
-            ]
-        ]
-    ])}
-    {Pjax::end()|void}
+{ListView::widget([
+    'dataProvider' => $dataProvider,
+    'layout' => '{summary}{pager}{items}{pager}',
+    'itemView' => '_list_item.tpl',
+    'itemOptions' => [
+        'class' => 'row portfolio-item'
+    ],
+    'pager' => [
+        'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
+        'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
+    ]
+])}
 
-    {* <ul class="list-page js-portfolio-list">
-        {ListView::widget([
-            'dataProvider' => $dataProvider,
-            'itemView' => '_list_item.tpl'
-        ])}
-    </ul> *}
-
-
-{Html::endForm()}
-
-
-<icons style="zoom: 2">
+<icons style="zoom: 2; margin-bottom: 50px; display:block;">
     <i class="flaticon-align7"></i>
     <i class="flaticon-arrow63"></i>
     <i class="flaticon-arrow64"></i>
