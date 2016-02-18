@@ -68,8 +68,10 @@
 		"./admin/portfolio/categories/add.coffee": 4,
 		"./admin/portfolio/category": 6,
 		"./admin/portfolio/category.coffee": 6,
-		"./admin/portfolio/list": 8,
-		"./admin/portfolio/list.coffee": 8
+		"./admin/portfolio/index": 8,
+		"./admin/portfolio/index.coffee": 8,
+		"./admin/portfolio/list": 10,
+		"./admin/portfolio/list.coffee": 10
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -375,7 +377,7 @@
 	    $model = $(model);
 	    self = this;
 	    self._actions = actions;
-	    modelId = $model.attr('data-id');
+	    modelId = $model.attr('data-key');
 	    if (modelId != null) {
 	      self._modelId = modelId;
 	    }
@@ -739,6 +741,68 @@
 
 /***/ },
 /* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Index, controller, portfolioModel;
+
+	controller = __webpack_require__(3);
+
+	portfolioModel = __webpack_require__(9);
+
+	Index = (function() {
+	  function Index() {
+	    var m;
+	    m = new portfolioModel({
+	      model: $('#w0 [data-model=portfolio]')
+	    });
+	    console.log(m.raw());
+	  }
+
+	  return Index;
+
+	})();
+
+	module.exports = new Index;
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Model, Portfolio,
+	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+	  hasProp = {}.hasOwnProperty;
+
+	Model = __webpack_require__(5);
+
+	Portfolio = (function(superClass) {
+	  extend(Portfolio, superClass);
+
+	  function Portfolio() {
+	    this.update = bind(this.update, this);
+	    return Portfolio.__super__.constructor.apply(this, arguments);
+	  }
+
+	  Portfolio.prototype.fields = ['title', 'description', 'category_id'];
+
+	  Portfolio.prototype.actions = {
+	    update: Portfolio.update
+	  };
+
+	  Portfolio.prototype.update = function(e) {
+	    return e.preventDefault();
+	  };
+
+	  return Portfolio;
+
+	})(Model);
+
+	module.exports = Portfolio;
+
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var List, controller;

@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "portfolio_category".
@@ -17,7 +19,7 @@ use Yii;
  *
  * @property Portfolio[] $portfolios
  */
-class PortfolioCategory extends \yii\db\ActiveRecord
+class PortfolioCategory extends ActiveRecord
 {
     public $label;
     public $url;
@@ -84,5 +86,11 @@ class PortfolioCategory extends \yii\db\ActiveRecord
             ];
         }
         return $items;
+    }
+
+    public function getDropDownList()
+    {
+        $categories = $this->find()->select(['id', 'name'])->orderBy('position')->all();
+        return ArrayHelper::map($categories, 'id', 'name');
     }
 }

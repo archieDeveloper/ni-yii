@@ -28,6 +28,7 @@ class AdminAsset extends AssetBundle
         'css/flaticon.css'
     ];
     public $js = [
+        'js/admin.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

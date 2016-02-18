@@ -2,17 +2,15 @@
 
 namespace app\module\admin\controllers;
 
+use app\filters\AjaxFilter;
 use app\models\PortfolioCategory;
 use Yii;
 use app\models\Portfolio;
-use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\PortfolioSearch;
-use yii\web\Request;
 
 /**
  * PortfolioController implements the CRUD actions for Portfolio model.
@@ -26,7 +24,14 @@ class PortfolioController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                    'update-title' => ['post']
                 ],
+            ],
+            'ajax' => [
+                'class' => AjaxFilter::className(),
+                'actions' => [
+                    'update-title'
+                ]
             ],
         ];
     }
@@ -42,12 +47,22 @@ class PortfolioController extends Controller
         $searchModel = new PortfolioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $portfolioCategory = new PortfolioCategory();
+
         $this->view->title = 'Выполненные работы';
         $this->view->params['breadcrumbs'][] = $this->view->title;
-        return $this->render('index.tpl', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'categories' => $portfolioCategory->getDropDownList()
         ]);
+    }
+
+    public function actionUpdateTitle()
+    {
+        return [
+            'data' => 'buff'
+        ];
     }
 
     /**

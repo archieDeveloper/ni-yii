@@ -1,40 +1,45 @@
-{use class="yii\helpers\Html"}
-{use class="yii\grid\GridView"}
-{use class="yii\helpers\Url"}
-{use class="app\helpers\GridHelper"}
-{use class="yii\widgets\ListView"}
-{use class="app\models\PortfolioCategory"}
-{use class="yii\helpers\ArrayHelper"}
-{use class="yii\widgets\Pjax"}
-{use class="microinginer\dropDownActionColumn\DropDownActionColumn"}
-
+<?php
+use yii\helpers\Html;
+use yii\widgets\ListView;
+?>
 <div class="wrap-header">
     <div class="row">
         <div class="col-xs-6">
-            <span class="h2">{Html::encode($this->title)}</span>
+            <span class="h2"><?=Html::encode($this->title)?></span>
         </div>
         <div class="col-xs-6 text-right">
             <div class="btn-group">
-                {Html::a('<i class="flaticon-plus13"></i> Добавить работу', ['create'], [
+                <?=Html::a('<i class="flaticon-plus13"></i> Добавить работу', ['create'], [
                     'class' => 'btn btn-success'
-                ])}
+                ])?>
             </div>
         </div>
     </div>
 </div>
 
-{ListView::widget([
+<?=ListView::widget([
     'dataProvider' => $dataProvider,
     'layout' => '{summary}{pager}{items}{pager}',
-    'itemView' => '_list_item.tpl',
+    'itemView' => '_list_item',
+    'viewParams' => [
+        'categories' => $categories
+    ],
     'itemOptions' => [
-        'class' => 'row portfolio-item'
+        'class' => 'row portfolio-item',
+        'data' => [
+            'model' => 'portfolio'
+        ]
+    ],
+    'options' => [
+        'data' => [
+            'controller' => 'admin/portfolio/index'
+        ]
     ],
     'pager' => [
         'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
         'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
     ]
-])}
+])?>
 
 <icons style="zoom: 2; margin-bottom: 50px; display:block;">
     <i class="flaticon-align7"></i>

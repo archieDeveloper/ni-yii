@@ -16,7 +16,7 @@ class Model
     $model = $ model
     self = @
     self._actions = actions
-    modelId = $model.attr('data-id')
+    modelId = $model.attr('data-key')
     if modelId?
       self._modelId = modelId
     $fields = $model.find('[data-field]')
