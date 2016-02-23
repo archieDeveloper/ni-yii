@@ -44,165 +44,169 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var PortfolioListView;
+	var SelectView, portfolioCategories;
 
-	PortfolioListView = __webpack_require__(1);
+	portfolioCategories = __webpack_require__(1);
 
-	new PortfolioListView;
+	SelectView = __webpack_require__(3);
+
+	portfolioCategories.fetch().then(function() {
+	  var selectView;
+	  selectView = new SelectView({
+	    selectedId: 2,
+	    collection: portfolioCategories,
+	    id: 'portfolio-category_id',
+	    className: 'form-control',
+	    attributes: {
+	      name: 'Portfolio[category_id]'
+	    }
+	  });
+	  selectView.render();
+	  return $('body').html(selectView.el);
+	});
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var PortfolioItemView, PortfolioListView, portfolios,
+	var PortfolioCategories, PortfolioCategory,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
 
-	portfolios = __webpack_require__(2);
+	PortfolioCategory = __webpack_require__(2);
 
-	PortfolioItemView = __webpack_require__(4);
+	PortfolioCategories = (function(superClass) {
+	  extend(PortfolioCategories, superClass);
 
-	PortfolioListView = (function(superClass) {
-	  extend(PortfolioListView, superClass);
-
-	  function PortfolioListView() {
-	    return PortfolioListView.__super__.constructor.apply(this, arguments);
+	  function PortfolioCategories() {
+	    return PortfolioCategories.__super__.constructor.apply(this, arguments);
 	  }
 
-	  PortfolioListView.prototype.el = '.js-portfolios';
+	  PortfolioCategories.prototype.model = PortfolioCategory;
 
-	  PortfolioListView.prototype.initialize = function() {
-	    this.listenTo(portfolios, 'reset', this.addAll);
-	    return portfolios.fetch({
-	      reset: true
-	    });
-	  };
+	  PortfolioCategories.prototype.url = '/api/portfolio-categories';
 
-	  PortfolioListView.prototype.addAll = function() {
-	    this.$el.html('');
-	    return portfolios.each(this.addOne, this);
-	  };
+	  return PortfolioCategories;
 
-	  PortfolioListView.prototype.addOne = function(portfolio) {
-	    var view;
-	    view = new PortfolioItemView({
-	      model: portfolio
-	    });
-	    view.render();
-	    return this.$el.append(view.el);
-	  };
+	})(Backbone.Collection);
 
-	  return PortfolioListView;
-
-	})(Backbone.View);
-
-	module.exports = PortfolioListView;
+	module.exports = new PortfolioCategories;
 
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var Portfolio, Portfolios,
+	var PortfolioCategory,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
 
-	Portfolio = __webpack_require__(3);
+	PortfolioCategory = (function(superClass) {
+	  extend(PortfolioCategory, superClass);
 
-	Portfolios = (function(superClass) {
-	  extend(Portfolios, superClass);
-
-	  function Portfolios() {
-	    return Portfolios.__super__.constructor.apply(this, arguments);
+	  function PortfolioCategory() {
+	    return PortfolioCategory.__super__.constructor.apply(this, arguments);
 	  }
 
-	  Portfolios.prototype.model = Portfolio;
+	  PortfolioCategory.prototype.defaults = function() {
+	    return {
+	      id: 0,
+	      link: '',
+	      name: '',
+	      description: '',
+	      position: 0
+	    };
+	  };
 
-	  Portfolios.prototype.url = '/api/portfolios';
+	  return PortfolioCategory;
 
-	  return Portfolios;
+	})(Backbone.Model);
 
-	})(Backbone.Collection);
-
-	module.exports = new Portfolios;
+	module.exports = PortfolioCategory;
 
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	var Portfolio,
+	var OptionView, Select,
+	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
 
-	Portfolio = (function(superClass) {
-	  extend(Portfolio, superClass);
+	OptionView = __webpack_require__(4);
 
-	  function Portfolio() {
-	    return Portfolio.__super__.constructor.apply(this, arguments);
+	Select = (function(superClass) {
+	  extend(Select, superClass);
+
+	  function Select() {
+	    this.renderOne = bind(this.renderOne, this);
+	    return Select.__super__.constructor.apply(this, arguments);
 	  }
 
-	  Portfolio.prototype.defaults = function() {
-	    return {
-	      id: 0,
-	      category_id: 0,
-	      title: '',
-	      description: ''
-	    };
+	  Select.prototype.tagName = 'select';
+
+	  Select.prototype.initialize = function(options) {
+	    if (options != null) {
+	      return this.selectedId = options.selectedId;
+	    }
 	  };
 
-	  return Portfolio;
+	  Select.prototype.render = function() {
+	    this.$el.html('');
+	    return this.collection.each(this.renderOne);
+	  };
 
-	})(Backbone.Model);
+	  Select.prototype.renderOne = function(option) {
+	    var optionId, optionView;
+	    optionId = option.get('id');
+	    optionView = new OptionView({
+	      model: option,
+	      attributes: {
+	        selected: optionId === this.selectedId,
+	        value: optionId
+	      }
+	    });
+	    optionView.render();
+	    return this.$el.append(optionView.el);
+	  };
 
-	module.exports = Portfolio;
+	  return Select;
+
+	})(Backbone.View);
+
+	module.exports = Select;
 
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var PortfolioItemView,
+	var Option,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
 
-	PortfolioItemView = (function(superClass) {
-	  extend(PortfolioItemView, superClass);
+	Option = (function(superClass) {
+	  extend(Option, superClass);
 
-	  function PortfolioItemView() {
-	    return PortfolioItemView.__super__.constructor.apply(this, arguments);
+	  function Option() {
+	    return Option.__super__.constructor.apply(this, arguments);
 	  }
 
-	  PortfolioItemView.prototype.template = _.template(__webpack_require__(5));
+	  Option.prototype.tagName = 'option';
 
-	  PortfolioItemView.prototype.className = function() {
-	    return 'row portfolio-item';
-	  };
-
-	  PortfolioItemView.prototype.attributes = function() {
-	    return {
-	      'data-key': this.model.get('id')
-	    };
-	  };
-
-	  PortfolioItemView.prototype.render = function() {
-	    this.$el.html(this.template(this.model.toJSON()));
+	  Option.prototype.render = function() {
+	    this.$el.html(this.model.get('name'));
 	    return this;
 	  };
 
-	  return PortfolioItemView;
+	  return Option;
 
 	})(Backbone.View);
 
-	module.exports = PortfolioItemView;
+	module.exports = Option;
 
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"col-xs-12\">\n    <a class=\"close\" href=\"/admin/portfolio/delete.html?id=<%= id %>\" title=\"\" data-method=\"post\" data-original-title=\"Удалить\"><span aria-hidden=\"true\">×</span></a>\n</div>\n<div class=\"col-xs-12\">\n    <div class=\"row\">\n        <div class=\"col-md-2\">\n            <img src=\"/yii2images/images/image-by-item-and-alias.html?item=Portfolio<%= id %>&amp;dirtyAlias=b0c7aa0402-1_200x.png\" alt=\"\" class=\"img-rounded img-responsive center-block mb-20\">\n        </div>\n        <div class=\"col-md-10\">\n            <form id=\"w1\" action=\"/admin/portfolio.html\" method=\"post\" role=\"form\">\n                <input type=\"hidden\" name=\"_csrf\" value=\"aVpYbjZ3UVoMHzE/BA0HKSIbPylyRydrIjQVA1kfP2oPaAsZUgEebQ==\">\n                <div class=\"form-group field-portfolio-category_id\">\n                    <label class=\"control-label\" for=\"portfolio-category_id\">Категория</label>\n                    <select id=\"portfolio-category_id\" class=\"form-control\" name=\"Portfolio[category_id]\">\n                        <option value=\"2\">Кухни</option>\n                        <option value=\"1\" selected=\"\">Детские</option>\n                        <option value=\"3\">Шкафы-купе</option>\n                    </select>\n                    <p class=\"help-block help-block-error\"></p>\n                </div>\n                <div class=\"form-group field-portfolio-title\">\n                    <label class=\"control-label\" for=\"portfolio-title\">Заголовок</label>\n                    <input type=\"text\" id=\"portfolio-title\" class=\"form-control\" name=\"Portfolio[title]\" value=\"<%= title %>\">\n                    <p class=\"help-block help-block-error\"></p>\n                </div>\n                <div class=\"form-group field-portfolio-description\">\n                    <label class=\"control-label\" for=\"portfolio-description\">Описание</label>\n                    <textarea id=\"portfolio-description\" class=\"form-control\" name=\"Portfolio[description]\"><%= description %></textarea>\n                    <p class=\"help-block help-block-error\"></p>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
 
 /***/ }
 /******/ ]);

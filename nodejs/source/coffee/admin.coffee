@@ -11,9 +11,6 @@
 #  require 'controllers/admin/portfolio/category'
 #  require 'controllers/admin/portfolio/articles'
 
-PortfolioListView = require 'view/PortfolioList'
-
-new PortfolioListView
 
 #pCollection = require 'collection/PortfolioCategories'
 #PView = require 'view/PortfolioCategoriesSelect'
@@ -21,3 +18,28 @@ new PortfolioListView
 #pCollection.fetch().then ->
 #  view = new PView {collection: pCollection}
 #  console.dir(view.el)
+
+
+
+#
+#PortfolioListView = require 'view/PortfolioList'
+#
+#new PortfolioListView
+
+portfolioCategories = require 'collection/PortfolioCategories'
+SelectView = require 'view/widget/select'
+
+portfolioCategories.fetch().then ->
+  selectView = new SelectView {
+    selectedId: 2
+
+    collection: portfolioCategories
+    id: 'portfolio-category_id'
+    className: 'form-control'
+    attributes: {
+      name: 'Portfolio[category_id]'
+    }
+  }
+  selectView.render()
+
+  $('body').html(selectView.el)
