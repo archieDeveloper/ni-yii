@@ -54,7 +54,15 @@ $config = [
             'showScriptName' => false,
             'suffix' => '.html',
             'rules' => [
-                'portfolio/category/<link:\w+>' => 'portfolio/category'
+                'portfolio/category/<link:\w+>' => 'portfolio/category',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'api/portfolio',
+                        'api/portfolio-category'
+                    ],
+                    'suffix' => false,
+                ],
             ]
         ]
     ],
@@ -73,6 +81,11 @@ $config = [
         ],
         'admin' => [
             'class' => 'app\module\admin\Module',
+            'layout' => 'ni.tpl',
+            'defaultRoute' => 'dashboard',
+        ],
+        'api' => [
+            'class' => 'app\module\api\Module',
             'layout' => 'ni.tpl',
             'defaultRoute' => 'dashboard',
         ],

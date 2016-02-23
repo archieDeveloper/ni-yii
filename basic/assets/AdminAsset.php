@@ -34,6 +34,7 @@ class AdminAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         '\rmrevin\yii\fontawesome\AssetBundle',
-        'justinvoelker\awesomebootstrapcheckbox\Asset'
+        'justinvoelker\awesomebootstrapcheckbox\Asset',
+        'app\assets\BackboneAsset'
     ];
 }

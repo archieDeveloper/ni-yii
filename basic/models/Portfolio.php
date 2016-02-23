@@ -52,15 +52,6 @@ class Portfolio extends ActiveRecord
         ];
     }
 
-//    public function afterFind()
-//    {
-//        if (empty($this->cover)) {
-//            $this->cover = 1;
-//        }
-//        parent::afterFind();
-//
-//    }
-
     /**
      * @inheritdoc
      */

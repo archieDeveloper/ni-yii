@@ -23,7 +23,8 @@
         "dektrium/yii2-user": "0.9.*@dev",
         "microinginer/yii2-dropdown-action-column": "dev-master",
         "justinvoelker/yii2-awesomebootstrapcheckbox": "*",
-        "rmrevin/yii2-fontawesome": "2.10.*"
+        "rmrevin/yii2-fontawesome": "2.10.*",
+        "bower-asset/backbone": "~1.2.3"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

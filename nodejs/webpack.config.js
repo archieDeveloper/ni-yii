@@ -18,6 +18,10 @@ module.exports = {
       {
         test: /\.coffee$/,
         loader: 'coffee-loader'
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       }
     ]
   },

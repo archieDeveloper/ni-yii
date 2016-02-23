@@ -17,29 +17,31 @@ use yii\widgets\ListView;
     </div>
 </div>
 
-<?=ListView::widget([
-    'dataProvider' => $dataProvider,
-    'layout' => '{summary}{pager}{items}{pager}',
-    'itemView' => '_list_item',
-    'viewParams' => [
-        'categories' => $categories
-    ],
-    'itemOptions' => [
-        'class' => 'row portfolio-item',
-        'data' => [
-            'model' => 'portfolio'
-        ]
-    ],
-    'options' => [
-        'data' => [
-            'controller' => 'admin/portfolio/index'
-        ]
-    ],
-    'pager' => [
-        'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
-        'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
-    ]
-])?>
+<div class="js-portfolios"></div>
+<?//=ListView::widget([
+//    'dataProvider' => $dataProvider,
+//    'layout' => '{summary}{pager}{items}{pager}',
+//    'itemView' => '_list_item',
+//    'viewParams' => [
+//        'categories' => $categories
+//    ],
+//    'itemOptions' => [
+//        'class' => 'row portfolio-item',
+//        'data' => [
+//            'model' => 'portfolio'
+//        ]
+//    ],
+//    'options' => [
+//        'class' => 'js-portfolios',
+//        'data' => [
+//            'controller' => 'admin/portfolio/index'
+//        ]
+//    ],
+//    'pager' => [
+//        'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
+//        'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
+//    ]
+//])?>
 
 <icons style="zoom: 2; margin-bottom: 50px; display:block;">
     <i class="flaticon-align7"></i>
