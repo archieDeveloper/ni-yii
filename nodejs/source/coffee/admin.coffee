@@ -26,20 +26,43 @@
 #
 #new PortfolioListView
 
-portfolioCategories = require 'collection/PortfolioCategories'
-SelectView = require 'view/widget/select'
+#portfolioCategories = require 'collection/PortfolioCategories'
+#SelectView = require 'view/widget/select'
+#
+#portfolioCategories.fetch().then ->
+#  selectView = new SelectView {
+#    selectedId: 2
+#
+#    collection: portfolioCategories
+#    id: 'portfolio-category_id'
+#    className: 'form-control'
+#    attributes: {
+#      name: 'Portfolio[category_id]'
+#    }
+#  }
+#  selectView.render()
 
-portfolioCategories.fetch().then ->
-  selectView = new SelectView {
-    selectedId: 2
 
-    collection: portfolioCategories
-    id: 'portfolio-category_id'
-    className: 'form-control'
-    attributes: {
-      name: 'Portfolio[category_id]'
-    }
-  }
-  selectView.render()
+PortfolioListView = require 'view/PortfolioList'
+#portfolioListView = new PortfolioListView
+portfolios = require 'collection/Portfolios'
+page = 1
+$('.js-show-previous').on 'click', ->
+  page += 1
+  portfolios.fetch {reset: true, data: $.param({page: page})}
 
-  $('body').html(selectView.el)
+
+
+
+
+
+  #portfolioListView.render()
+PaginationView = require 'view/widget/pagination'
+paginationView = new PaginationView {
+  pageCount: 2
+  perPage: 5
+  totalCount: 8
+  currentPage: 1
+}
+paginationView.render()
+#$('body').html(paginationView.el)

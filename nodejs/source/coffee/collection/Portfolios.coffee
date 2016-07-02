@@ -4,6 +4,11 @@ class Portfolios extends Backbone.Collection
 
   model: Portfolio
 
-  url: '/api/portfolios'
+  byCategory: (category)->
+    filtered = @filter (box) ->
+      box.get("category_id") == category
+    new Portfolios filtered
+
+  url: '/api/portfolio-news?expand=cover'
 
 module.exports = new Portfolios

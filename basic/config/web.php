@@ -59,6 +59,7 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
                         'api/portfolio',
+                        'api/portfolio-new',
                         'api/portfolio-category'
                     ],
                     'suffix' => false,

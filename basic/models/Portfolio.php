@@ -72,6 +72,11 @@ class Portfolio extends ActiveRecord
         ];
     }
 
+    public function extraFields()
+    {
+        return ['category', 'cover'];
+    }
+
     /**
      * @inheritdoc
      */

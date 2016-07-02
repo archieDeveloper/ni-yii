@@ -18,30 +18,90 @@ use yii\widgets\ListView;
 </div>
 
 <div class="js-portfolios"></div>
-<?//=ListView::widget([
-//    'dataProvider' => $dataProvider,
-//    'layout' => '{summary}{pager}{items}{pager}',
-//    'itemView' => '_list_item',
-//    'viewParams' => [
-//        'categories' => $categories
-//    ],
-//    'itemOptions' => [
-//        'class' => 'row portfolio-item',
-//        'data' => [
-//            'model' => 'portfolio'
-//        ]
-//    ],
-//    'options' => [
-//        'class' => 'js-portfolios',
-//        'data' => [
-//            'controller' => 'admin/portfolio/index'
-//        ]
-//    ],
+<button class="js-show-previous" style="padding: 7px 16px 8px;
+margin: 15px auto 0;
+font-size: 12.5px;
+display: block;
+zoom: 1;
+cursor: pointer;
+white-space: nowrap;
+outline: none;
+vertical-align: top;
+line-height: 15px;
+text-align: center;
+text-decoration: none;
+background: none;
+background-color: #dae2eb;
+color: #55677d;
+border: 0;
+border-radius: 2px;
+box-sizing: border-box;display: none">к предыдущим записям</button>
+<?=ListView::widget([
+    'dataProvider' => $dataProvider,
+    'layout' => '{items}',
+    'itemView' => '_list_item',
+    'viewParams' => [
+        'categories' => $categories
+    ],
+    'itemOptions' => [
+        'class' => 'row portfolio-item',
+        'data' => [
+            'model' => 'portfolio'
+        ]
+    ],
+    'options' => [
+        'class' => 'ajs-portfolios',
+        'data' => [
+            'controller' => 'admin/portfolio/index'
+        ]
+    ],
 //    'pager' => [
 //        'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
 //        'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
 //    ]
-//])?>
+])?>
+<div style="text-align: center">
+    <span style="
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: rgba(248,248,248,0.6);
+    color: #8f8f8f;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 7px 18px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+">Страница 2</span>
+</div>
+
+<?=ListView::widget([
+    'dataProvider' => $dataProvider,
+    'layout' => '{items}',
+    //'layout' => '{summary}{pager}{items}{pager}',
+    'itemView' => '_list_item',
+    'viewParams' => [
+        'categories' => $categories
+    ],
+    'itemOptions' => [
+        'class' => 'row portfolio-item',
+        'data' => [
+            'model' => 'portfolio'
+        ]
+    ],
+    'options' => [
+        'class' => 'ajs-portfolios',
+        'data' => [
+            'controller' => 'admin/portfolio/index'
+        ]
+    ],
+//    'pager' => [
+//        'prevPageLabel'=>'<i class="flaticon-thin6"></i>',
+//        'nextPageLabel'=>'<i class="flaticon-thin2"></i>'
+//    ]
+])?>
 
 <icons style="zoom: 2; margin-bottom: 50px; display:block;">
     <i class="flaticon-align7"></i>

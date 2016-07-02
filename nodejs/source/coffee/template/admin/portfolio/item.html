@@ -1,21 +1,22 @@
 <div class="col-xs-12">
-    <a class="close" href="/admin/portfolio/delete.html?id=<%= id %>" title="" data-method="post" data-original-title="Удалить"><span aria-hidden="true">×</span></a>
+    <a class="close" href="/admin/portfolio/delete.html?id=<%= id %>" title="Удалить" data-method="post"><span aria-hidden="true">&times;</span></a>
 </div>
 <div class="col-xs-12">
     <div class="row">
         <div class="col-md-2">
-            <img src="/yii2images/images/image-by-item-and-alias.html?item=Portfolio<%= id %>&amp;dirtyAlias=b0c7aa0402-1_200x.png" alt="" class="img-rounded img-responsive center-block mb-20">
+            <% if (cover != null) { %>
+                <% var re = /(?:\.([^.]+))?$/; var ext = re.exec(cover.filePath)[1];  %>
+                <img src="/yii2images/images/image-by-item-and-alias.html?item=<%= cover.modelName %><%= cover.itemId %>&amp;dirtyAlias=<%= cover.urlAlias %>_200x.<%= ext %>" alt="" class="img-rounded img-responsive center-block mb-20">
+            <% } else { %>
+                <img src="/yii2images/images/image-by-item-and-alias.html?item=&amp;dirtyAlias=placeHolder_200x.png" alt="" class="img-rounded img-responsive center-block mb-20">
+            <% } %>
         </div>
         <div class="col-md-10">
             <form id="w1" action="/admin/portfolio.html" method="post" role="form">
                 <input type="hidden" name="_csrf" value="aVpYbjZ3UVoMHzE/BA0HKSIbPylyRydrIjQVA1kfP2oPaAsZUgEebQ==">
                 <div class="form-group field-portfolio-category_id">
                     <label class="control-label" for="portfolio-category_id">Категория</label>
-                    <select id="portfolio-category_id" class="form-control" name="Portfolio[category_id]">
-                        <option value="2">Кухни</option>
-                        <option value="1" selected="">Детские</option>
-                        <option value="3">Шкафы-купе</option>
-                    </select>
+                    <%= categoriesHTML %>
                     <p class="help-block help-block-error"></p>
                 </div>
                 <div class="form-group field-portfolio-title">
