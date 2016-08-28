@@ -4,7 +4,7 @@ path    = require('path');
 webpack = require('webpack');
 
 module.exports = {
-  entry: './source/coffee/admin.coffee',
+  entry: './source/coffee/admin.jsx',
   output: {
     path: path.join(__dirname, '../basic/web/js/'),
     filename: 'admin.js'
@@ -14,6 +14,10 @@ module.exports = {
       {
         test: /\.tpl$|.smarty$/,
         loader: 'smarty'
+      },
+      {
+        test: /\.jsx$/,
+        loader: 'babel-loader'
       },
       {
         test: /\.coffee$/,
@@ -30,9 +34,12 @@ module.exports = {
       path.resolve(__dirname, './source/coffee'),
       path.resolve(__dirname, '../basic/views')
     ],
-    extensions: ['', '.coffee', '.js']
+    extensions: ['', '.coffee', '.jsx', '.js']
   },
   plugins: [
+      //new webpack.optimize.CommonsChunkPlugin({
+      //  name: "common"
+      //})
     //new webpack.optimize.UglifyJsPlugin
   ]
 };

@@ -12,7 +12,8 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.5",
@@ -24,7 +25,7 @@
         "microinginer/yii2-dropdown-action-column": "dev-master",
         "justinvoelker/yii2-awesomebootstrapcheckbox": "*",
         "rmrevin/yii2-fontawesome": "2.10.*",
-        "bower-asset/backbone": "~1.2.3"
+        "opw/yii2-react": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

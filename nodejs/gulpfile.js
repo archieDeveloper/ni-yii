@@ -1,10 +1,7 @@
-var gulp, coffee, concat, uglify, rename, jade, stylus, webpack, gutil, paths;
+var gulp, coffee, concat, stylus, webpack, gutil, paths;
 gulp = require('gulp');
 
-coffee = require('gulp-coffee');
 concat = require('gulp-concat');
-uglify = require('gulp-uglify');
-rename = require('gulp-rename');
 stylus = require('gulp-stylus');
 webpack = require('webpack');
 gutil   = require('gulp-util');
@@ -16,11 +13,11 @@ paths.stylusAdmin      = ['source/stylus/admin/index.styl'];
 paths.stylusAdminWatch = ['source/stylus/admin/**/*.styl'];
 paths.js          = ['source/coffee/**/*.js'];
 paths.coffee      = ['source/coffee/**/*.coffee'];
-paths.smarty      = ['../basic/views/**/*.tpl'];
+paths.jsx      = ['source/coffee/**/*.jsx'];
 paths.webpack = [
-  paths.smarty,
   paths.js,
-  paths.coffee
+  paths.coffee,
+  paths.jsx
 ];
 
 gulp.task('stylus-admin', function() {

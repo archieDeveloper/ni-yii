@@ -10,14 +10,14 @@ $config = [
     'defaultRoute' => 'home',
     'layout' => 'ni.tpl',
     'components' => [
-        'view' => [
-            'renderers' => [
-                'tpl' => [
-                    'class' => 'yii\smarty\ViewRenderer',
-                    'cachePath' => '@runtime/Smarty/cache',
-                ],
-            ],
-        ],
+//        'view' => [
+//            'renderers' => [
+//                'tpl' => [
+//                    'class' => 'yii\smarty\ViewRenderer',
+//                    'cachePath' => '@runtime/Smarty/cache',
+//                ],
+//            ],
+//        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'xVugT-6lTZI9Z2p5e3k99BPWfBR6NxES',

@@ -2,21 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 ?>
-<div class="wrap-header">
-    <div class="row">
-        <div class="col-xs-6">
-            <span class="h2"><?=Html::encode($this->title)?></span>
-        </div>
-        <div class="col-xs-6 text-right">
-            <div class="btn-group">
-                <?=Html::a('<i class="flaticon-plus13"></i> Добавить работу', ['create'], [
-                    'class' => 'btn btn-success'
-                ])?>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div class="wrap-header" id="hhh"></div>
 <div class="js-portfolios"></div>
 <button class="js-show-previous" style="padding: 7px 16px 8px;
 margin: 15px auto 0;
@@ -200,3 +186,4 @@ box-sizing: border-box;display: none">к предыдущим записям</bu
     <i class="flaticon-volume5"></i>
     <i class="flaticon-window12"></i>
 </icons>
+

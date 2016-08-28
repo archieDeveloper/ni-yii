@@ -1,0 +1,39 @@
+<div class="ajs-portfolios">
+    <div class="row portfolio-item">
+        <div class="col-xs-12">
+            <a class="close" href="/admin/portfolio/delete.html?id=21" title="Удалить" data-method="post"><span
+                    aria-hidden="true">×</span></a></div>
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="/yii2images/images/image-by-item-and-alias.html?item=Portfolio21&amp;dirtyAlias=b0c7aa0402-1_200x.png"
+                         alt="" class="img-rounded img-responsive center-block mb-20">
+                </div>
+                <div class="col-md-10">
+                    <form action="/admin/portfolio/index.html" method="post" role="form">
+                        <div class="form-group field-portfolio-category_id">
+                            <label class="control-label" for="portfolio-category_id">Категория</label>
+                            <select id="portfolio-category_id" class="form-control" name="Portfolio[category_id]">
+                                <option value="2">Кухни</option>
+                                <option value="1" selected="">Детские</option>
+                                <option value="3">Шкафы-купе</option>
+                            </select>
+                            <p class="help-block help-block-error"></p>
+                        </div>
+                        <div class="form-group field-portfolio-title">
+                            <label class="control-label" for="portfolio-title">Заголовок</label>
+                            <input type="text" id="portfolio-title" class="form-control" name="Portfolio[title]"
+                                   value="new window">
+                            <p class="help-block help-block-error"></p>
+                        </div>
+                        <div class="form-group field-portfolio-description">
+                            <label class="control-label" for="portfolio-description">Описание</label>
+                            <textarea id="portfolio-description" class="form-control" name="Portfolio[description]">new window for callback</textarea>
+                            <p class="help-block help-block-error"></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

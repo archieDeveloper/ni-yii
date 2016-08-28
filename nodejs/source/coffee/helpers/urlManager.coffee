@@ -47,6 +47,4 @@ class UrlManager
   getPathName: ->
     window.location.pathname
 
-
-
 module.exports = UrlManager

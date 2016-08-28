@@ -22,7 +22,6 @@ class PortfolioListView extends Backbone.View
         console.log options.xhr.getResponseHeader('X-Pagination-Current-Page')
     }
 
-
   addAll: ->
     console.log(portfolios)
     portfolios.each @addOne, @

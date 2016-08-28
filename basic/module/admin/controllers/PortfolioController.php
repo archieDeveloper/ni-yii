@@ -42,7 +42,7 @@ class PortfolioController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'newNi.tpl';
+        $this->layout = 'newNi.php';
 
         $searchModel = new PortfolioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

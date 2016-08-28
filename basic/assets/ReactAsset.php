@@ -15,14 +15,11 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class BackboneAsset extends AssetBundle
+class ReactAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/backbone';
+    public $sourcePath = '@bower/react';
     public $js = [
-        'backbone-min.js',
-    ];
-
-    public $depends = [
-        'app\assets\UnderscoreAsset',
+        'react.js',
+        'react-dom.js',
     ];
 }
