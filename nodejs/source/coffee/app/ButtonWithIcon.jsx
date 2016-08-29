@@ -15,11 +15,17 @@ class ButtonWithIcon extends React.Component {
             'data-toggle': React.PropTypes.string,
             'data-placement': React.PropTypes.string,
             title: React.PropTypes.string,
-            href: React.PropTypes.string
+            href: React.PropTypes.string,
+            target: React.PropTypes.string
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.iconName !== this.props.iconName;
+    }
+
     render() {
+        //console.log('Button render! ' + this.props.title);
         return (
             <a
                 className={`button-with-icon${this.props.className ? ` ${this.props.className}` : ''}`}
@@ -28,6 +34,7 @@ class ButtonWithIcon extends React.Component {
                 data-placement={this.props['data-placement'] || null}
                 title={this.props['title'] || null}
                 href={this.props['href'] || null}
+                target={this.props['target'] || null}
             >
                 <FlatIcon iconName={this.props.iconName}/>
             </a>

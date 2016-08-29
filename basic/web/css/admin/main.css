@@ -73,25 +73,8 @@
 }
 
 .logo > .go-home {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    width: 75px;
-    height: 75px;
-    position: absolute;
-    right: 0;
-    top: 0;
     background-color: #E2E2E2;
     color: #9E9E9E;
-    transition: all 0.2s;
-}
-
-.logo > .go-home:hover {
-    color: #3498DB;
-}
-
-.logo > .go-home > i[class^="flaticon-"] {
-    font-size: 24px;
 }
 
 .button-with-icon.left {

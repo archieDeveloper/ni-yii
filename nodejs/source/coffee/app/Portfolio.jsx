@@ -6,12 +6,15 @@ class Portfolio extends React.Component {
     }
 
     render() {
+        let portfolioItems = this.props.data.map((item) => {
+            return (
+                <Item key={item['id']} data={item}/>
+            );
+        });
+
         return (
             <div className="ajs-portfolios">
-                <Item/>
-                <Item/>
-                <Item/>
-                <Item/>
+                {portfolioItems}
             </div>
         );
     };

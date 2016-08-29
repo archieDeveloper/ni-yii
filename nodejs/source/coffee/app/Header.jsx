@@ -12,8 +12,14 @@ class Header extends React.Component {
     static get propTypes() {
         return {
             titleText: React.PropTypes.string.isRequired,
-            titleSearch: React.PropTypes.string.isRequired
+            titleSearch: React.PropTypes.string.isRequired,
+            onCloseSearch: React.PropTypes.func,
+            onChangeSearchQuery: React.PropTypes.func
         };
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.modeSearch !== this.state.modeSearch;
     }
 
     componentDidUpdate() {
@@ -29,9 +35,15 @@ class Header extends React.Component {
         this.setState({
             modeSearch: !this.state.modeSearch
         });
+        let isExistCloseSearch = this.props.onCloseSearch != null;
+        let isFunctionCloseSearch = typeof this.props.onCloseSearch === 'function';
+        if (isExistCloseSearch && isFunctionCloseSearch) {
+            this.props.onCloseSearch();
+        }
     }
 
     render() {
+        console.log('Header render!');
         return (
             <div className="wrap-header">
                 <ButtonWithIcon
@@ -60,6 +72,7 @@ class Header extends React.Component {
                                   className="wrap-header_h2_input"
                                   type="text"
                                   placeholder={this.props.titleSearch}
+                                  onChange={this.props.onChangeSearchQuery}
                               />
                             : this.props.titleText
                     }

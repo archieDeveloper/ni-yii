@@ -1,19 +1,17 @@
-var Header = require('app/Header');
-var Portfolio = require('app/Portfolio');
+let ColorLine = require('app/ColorLine');
+let SideBar = require('app/SideBar');
+let PortfolioPage = require('app/PortfolioPage');
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>
-                <Header titleText="Выполненные работы" titleSearch="Поиск по заголовку"/>
-                <Portfolio/>
+                <ColorLine/>
+                <SideBar/>
+                <PortfolioPage/>
             </div>
         );
-    };
+    }
 }
 
 ReactDOM.render(<App/>, document.getElementById('hhh'));
