@@ -1,6 +1,6 @@
-let ColorLine = require('app/ColorLine');
-let SideBar = require('app/SideBar');
-let PortfolioPage = require('app/PortfolioPage');
+import ColorLine from 'app/ColorLine';
+import SideBar from 'app/SideBar';
+import PortfolioPage from 'app/PortfolioPage';
 
 class App extends React.Component {
     render() {

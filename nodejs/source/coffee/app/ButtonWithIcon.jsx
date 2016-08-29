@@ -1,4 +1,4 @@
-var FlatIcon = require('app/FlatIcon');
+import FlatIcon from 'app/FlatIcon';
 
 class ButtonWithIcon extends React.Component {
 
@@ -42,4 +42,4 @@ class ButtonWithIcon extends React.Component {
     };
 }
 
-module.exports = ButtonWithIcon;
+export default ButtonWithIcon;

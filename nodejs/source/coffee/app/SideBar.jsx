@@ -1,5 +1,5 @@
-let Separator = require('app/Separator');
-let ButtonWithIcon = require('app/ButtonWithIcon');
+import Separator from 'app/Separator';
+import ButtonWithIcon from 'app/ButtonWithIcon';
 
 class SideBar extends React.Component {
 
@@ -16,24 +16,24 @@ class SideBar extends React.Component {
                     <ButtonWithIcon iconName="export" title="Просмотреть сайт" href="/" className="go-home" target="_blank"/>
                 </div>
                 <ul className="nav">
-                    <li><a href="/{$this-&gt;context-&gt;module-&gt;id}.html"><span className="glyphicon glyphicon-dashboard nav-glyphicon" aria-hidden="true"></span>Консоль</a></li>
+                    <li><a href="/admin.html"><span className="glyphicon glyphicon-dashboard nav-glyphicon" aria-hidden="true"/>Консоль</a></li>
                     <Separator/>
-                    <li><a href="/{$this-&gt;context-&gt;module-&gt;id}/pages.html"><span className="glyphicon glyphicon-duplicate nav-glyphicon" aria-hidden="true"></span>Страницы</a></li>
+                    <li><a href="/admin/pages.html"><span className="glyphicon glyphicon-duplicate nav-glyphicon" aria-hidden="true"/>Страницы</a></li>
                     <li>
-                        <a href="/{$this-&gt;context-&gt;module-&gt;id}/portfolio.html"><span className="glyphicon glyphicon-briefcase nav-glyphicon" aria-hidden="true"></span>Выполненные работы</a>
+                        <a href="/admin/portfolio.html"><span className="glyphicon glyphicon-briefcase nav-glyphicon" aria-hidden="true"/>Выполненные работы</a>
                     </li>
                     <li>
-                        <a href="/{$this-&gt;context-&gt;module-&gt;id}/articles.html"><span className="glyphicon glyphicon-align-left nav-glyphicon" aria-hidden="true"></span>Статьи</a>
+                        <a href="/admin/articles.html"><span className="glyphicon glyphicon-align-left nav-glyphicon" aria-hidden="true"/>Статьи</a>
                     </li>
-                    <li><a href="/{$this-&gt;context-&gt;module-&gt;id}/contacts.html"><span className="glyphicon glyphicon-phone nav-glyphicon" aria-hidden="true"></span>Контакты</a></li>
-                    <li><a href="/{$this-&gt;context-&gt;module-&gt;id}/feedback.html"><span className="glyphicon glyphicon-headphones nav-glyphicon" aria-hidden="true"></span>Обратная связь</a></li>
+                    <li><a href="/admin/contacts.html"><span className="glyphicon glyphicon-phone nav-glyphicon" aria-hidden="true"/>Контакты</a></li>
+                    <li><a href="/admin/feedback.html"><span className="glyphicon glyphicon-headphones nav-glyphicon" aria-hidden="true"/>Обратная связь</a></li>
                     <Separator/>
-                    <li><a href="/{$this-&gt;context-&gt;module-&gt;id}/feedback.html"><span className="glyphicon glyphicon-user nav-glyphicon" aria-hidden="true"></span>Модераторы</a></li>
-                    <li><a href="/{$this-&gt;context-&gt;module-&gt;id}/feedback.html"><span className="glyphicon glyphicon-cog nav-glyphicon" aria-hidden="true"></span>Настройки</a></li>
+                    <li><a href="/admin/feedback.html"><span className="glyphicon glyphicon-user nav-glyphicon" aria-hidden="true"/>Модераторы</a></li>
+                    <li><a href="/admin/feedback.html"><span className="glyphicon glyphicon-cog nav-glyphicon" aria-hidden="true"/>Настройки</a></li>
                 </ul>
             </div>
         );
     };
 }
 
-module.exports = SideBar;
+export default SideBar;

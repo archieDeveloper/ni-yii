@@ -48,15 +48,25 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _ColorLine = __webpack_require__(1);
+
+	var _ColorLine2 = _interopRequireDefault(_ColorLine);
+
+	var _SideBar = __webpack_require__(2);
+
+	var _SideBar2 = _interopRequireDefault(_SideBar);
+
+	var _PortfolioPage = __webpack_require__(6);
+
+	var _PortfolioPage2 = _interopRequireDefault(_PortfolioPage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ColorLine = __webpack_require__(1);
-	var SideBar = __webpack_require__(2);
-	var PortfolioPage = __webpack_require__(6);
 
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -73,9 +83,9 @@
 	            return React.createElement(
 	                'div',
 	                null,
-	                React.createElement(ColorLine, null),
-	                React.createElement(SideBar, null),
-	                React.createElement(PortfolioPage, null)
+	                React.createElement(_ColorLine2.default, null),
+	                React.createElement(_SideBar2.default, null),
+	                React.createElement(_PortfolioPage2.default, null)
 	            );
 	        }
 	    }]);
@@ -90,6 +100,10 @@
 /***/ function(module, exports) {
 
 	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -134,7 +148,7 @@
 	    return ColorLine;
 	}(React.Component);
 
-	module.exports = ColorLine;
+	exports.default = ColorLine;
 
 /***/ },
 /* 2 */
@@ -142,16 +156,27 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Separator = __webpack_require__(3);
+
+	var _Separator2 = _interopRequireDefault(_Separator);
+
+	var _ButtonWithIcon = __webpack_require__(4);
+
+	var _ButtonWithIcon2 = _interopRequireDefault(_ButtonWithIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Separator = __webpack_require__(3);
-	var ButtonWithIcon = __webpack_require__(4);
 
 	var SideBar = function (_React$Component) {
 	    _inherits(SideBar, _React$Component);
@@ -182,7 +207,7 @@
 	                        { className: 'logo-header' },
 	                        'Админка'
 	                    ),
-	                    React.createElement(ButtonWithIcon, { iconName: 'export', title: 'Просмотреть сайт', href: '/', className: 'go-home', target: '_blank' })
+	                    React.createElement(_ButtonWithIcon2.default, { iconName: 'export', title: 'Просмотреть сайт', href: '/', className: 'go-home', target: '_blank' })
 	                ),
 	                React.createElement(
 	                    'ul',
@@ -192,18 +217,18 @@
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}.html' },
+	                            { href: '/admin.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-dashboard nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Консоль'
 	                        )
 	                    ),
-	                    React.createElement(Separator, null),
+	                    React.createElement(_Separator2.default, null),
 	                    React.createElement(
 	                        'li',
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}/pages.html' },
+	                            { href: '/admin/pages.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-duplicate nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Страницы'
 	                        )
@@ -213,7 +238,7 @@
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}/portfolio.html' },
+	                            { href: '/admin/portfolio.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-briefcase nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Выполненные работы'
 	                        )
@@ -223,7 +248,7 @@
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}/articles.html' },
+	                            { href: '/admin/articles.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-align-left nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Статьи'
 	                        )
@@ -233,7 +258,7 @@
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}/contacts.html' },
+	                            { href: '/admin/contacts.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-phone nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Контакты'
 	                        )
@@ -243,18 +268,18 @@
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}/feedback.html' },
+	                            { href: '/admin/feedback.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-headphones nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Обратная связь'
 	                        )
 	                    ),
-	                    React.createElement(Separator, null),
+	                    React.createElement(_Separator2.default, null),
 	                    React.createElement(
 	                        'li',
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}/feedback.html' },
+	                            { href: '/admin/feedback.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-user nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Модераторы'
 	                        )
@@ -264,7 +289,7 @@
 	                        null,
 	                        React.createElement(
 	                            'a',
-	                            { href: '/{$this->context->module->id}/feedback.html' },
+	                            { href: '/admin/feedback.html' },
 	                            React.createElement('span', { className: 'glyphicon glyphicon-cog nav-glyphicon', 'aria-hidden': 'true' }),
 	                            'Настройки'
 	                        )
@@ -277,13 +302,17 @@
 	    return SideBar;
 	}(React.Component);
 
-	module.exports = SideBar;
+	exports.default = SideBar;
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
 	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -318,7 +347,7 @@
 	    return Separator;
 	}(React.Component);
 
-	module.exports = Separator;
+	exports.default = Separator;
 
 /***/ },
 /* 4 */
@@ -326,15 +355,23 @@
 
 	"use strict";
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _FlatIcon = __webpack_require__(5);
+
+	var _FlatIcon2 = _interopRequireDefault(_FlatIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var FlatIcon = __webpack_require__(5);
 
 	var ButtonWithIcon = function (_React$Component) {
 	    _inherits(ButtonWithIcon, _React$Component);
@@ -365,7 +402,7 @@
 	                    href: this.props['href'] || null,
 	                    target: this.props['target'] || null
 	                },
-	                React.createElement(FlatIcon, { iconName: this.props.iconName })
+	                React.createElement(_FlatIcon2.default, { iconName: this.props.iconName })
 	            );
 	        }
 	    }], [{
@@ -393,13 +430,17 @@
 	    return ButtonWithIcon;
 	}(React.Component);
 
-	module.exports = ButtonWithIcon;
+	exports.default = ButtonWithIcon;
 
 /***/ },
 /* 5 */
 /***/ function(module, exports) {
 
 	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -441,7 +482,7 @@
 	    return FlatIcon;
 	}(React.Component);
 
-	module.exports = FlatIcon;
+	exports.default = FlatIcon;
 
 /***/ },
 /* 6 */
@@ -449,17 +490,31 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Header = __webpack_require__(7);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _Portfolio = __webpack_require__(8);
+
+	var _Portfolio2 = _interopRequireDefault(_Portfolio);
+
+	var _FlatIcon = __webpack_require__(5);
+
+	var _FlatIcon2 = _interopRequireDefault(_FlatIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Header = __webpack_require__(7);
-	var Portfolio = __webpack_require__(8);
-	var FlatIcon = __webpack_require__(5);
 
 	var data = [{
 	    "id": 1,
@@ -674,7 +729,7 @@
 	}];
 	var iconNames = ['align7', 'arrow63', 'arrow64', 'arrow73', 'arrows4', 'ascendant', 'attachment3', 'checkmark2', 'chevron8', 'circle9', 'clockwise', 'cloud14', 'code3', 'conversation1', 'cross5', 'days', 'direction1', 'down5', 'down6', 'download12', 'edit4', 'export', 'eye8', 'feed', 'folder24', 'forward1', 'frontal', 'gaming', 'gear', 'graph3', 'graph7', 'graph8', 'headset1', 'heart10', 'help2', 'home11', 'info6', 'justify', 'left11', 'left16', 'left17', 'line4', 'loading', 'location12', 'lock5', 'loop4', 'mail5', 'map4', 'media11', 'media12', 'menu10', 'microphone6', 'mobile5', 'mobile7', 'move5', 'multimedia1', 'new8', 'next5', 'note3', 'open15', 'open16', 'outline3', 'outlined', 'phone14', 'photo7', 'plus13', 'print1', 'question2', 'rectangular1', 'reply2', 'reply4', 'return5', 'retweet1', 'search6', 'star11', 'stop4', 'tablet4', 'tablet5', 'text15', 'text2', 'thin2', 'thin6', 'thumbs9', 'thumbup', 'trash3', 'triangle4', 'upload8', 'user14', 'user15', 'view', 'view2', 'view3', 'volume12', 'volume5', 'indow12'];
 	var icons = iconNames.map(function (icon, key) {
-	    return React.createElement(FlatIcon, { key: key, iconName: icon });
+	    return React.createElement(_FlatIcon2.default, { key: key, iconName: icon });
 	});
 	var portfolioItems = data.map(function (item) {
 	    if (item['cover'] == null) {
@@ -732,13 +787,13 @@
 	            return React.createElement(
 	                'div',
 	                { className: 'container-fluid wrap-container' },
-	                React.createElement(Header, {
+	                React.createElement(_Header2.default, {
 	                    titleText: 'Выполненные работы',
 	                    titleSearch: 'Поиск по заголовку',
 	                    onChangeSearchQuery: this.handleSearchQuery,
 	                    onCloseSearch: this.handleCloseSearch
 	                }),
-	                React.createElement(Portfolio, { data: this.state.displayPortfolio }),
+	                React.createElement(_Portfolio2.default, { data: this.state.displayPortfolio }),
 	                React.createElement(
 	                    'icons',
 	                    { style: { zoom: 2, marginBottom: 50 + 'px', display: 'block' } },
@@ -751,7 +806,7 @@
 	    return PortfolioPage;
 	}(React.Component);
 
-	module.exports = PortfolioPage;
+	exports.default = PortfolioPage;
 
 /***/ },
 /* 7 */
@@ -759,15 +814,23 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _ButtonWithIcon = __webpack_require__(4);
+
+	var _ButtonWithIcon2 = _interopRequireDefault(_ButtonWithIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ButtonWithIcon = __webpack_require__(4);
 
 	var Header = function (_React$Component) {
 	    _inherits(Header, _React$Component);
@@ -818,18 +881,18 @@
 	            return React.createElement(
 	                'div',
 	                { className: 'wrap-header' },
-	                React.createElement(ButtonWithIcon, {
+	                React.createElement(_ButtonWithIcon2.default, {
 	                    title: 'Меню',
 	                    iconName: this.state.modeSearch ? 'thin6' : 'menu10',
 	                    href: '/admin/portfolio/create.html',
 	                    className: 'left menu'
 	                }),
-	                React.createElement(ButtonWithIcon, {
+	                React.createElement(_ButtonWithIcon2.default, {
 	                    title: 'Добавить работу',
 	                    iconName: 'plus13',
 	                    href: '/admin/portfolio/create.html'
 	                }),
-	                React.createElement(ButtonWithIcon, {
+	                React.createElement(_ButtonWithIcon2.default, {
 	                    title: 'Поиск',
 	                    ref: 'searchButton',
 	                    iconName: this.state.modeSearch ? 'cross5' : 'search6',
@@ -864,7 +927,7 @@
 	    return Header;
 	}(React.Component);
 
-	module.exports = Header;
+	exports.default = Header;
 
 /***/ },
 /* 8 */
@@ -872,15 +935,23 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Item = __webpack_require__(9);
+
+	var _Item2 = _interopRequireDefault(_Item);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Item = __webpack_require__(9);
 
 	var Portfolio = function (_React$Component) {
 	    _inherits(Portfolio, _React$Component);
@@ -895,7 +966,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var portfolioItems = this.props.data.map(function (item) {
-	                return React.createElement(Item, { key: item['id'], data: item });
+	                return React.createElement(_Item2.default, { key: item['id'], data: item });
 	            });
 
 	            return React.createElement(
@@ -909,7 +980,7 @@
 	    return Portfolio;
 	}(React.Component);
 
-	module.exports = Portfolio;
+	exports.default = Portfolio;
 
 /***/ },
 /* 9 */
@@ -917,15 +988,23 @@
 
 	"use strict";
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _FlatIcon = __webpack_require__(5);
+
+	var _FlatIcon2 = _interopRequireDefault(_FlatIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var FlatIcon = __webpack_require__(5);
 
 	var Item = function (_React$Component) {
 	    _inherits(Item, _React$Component);
@@ -948,7 +1027,7 @@
 	                    React.createElement(
 	                        "a",
 	                        { className: "close", href: "/admin/portfolio/delete.html?id=" + this.props.data.id, title: "Удалить", "data-method": "post" },
-	                        React.createElement(FlatIcon, { iconName: "cross5" })
+	                        React.createElement(_FlatIcon2.default, { iconName: "cross5" })
 	                    )
 	                ),
 	                React.createElement(
@@ -1062,7 +1141,7 @@
 	    return Item;
 	}(React.Component);
 
-	module.exports = Item;
+	exports.default = Item;
 
 /***/ }
 /******/ ]);

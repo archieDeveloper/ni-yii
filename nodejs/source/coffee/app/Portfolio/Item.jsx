@@ -1,4 +1,4 @@
-let FlatIcon = require('app/FlatIcon');
+import FlatIcon from 'app/FlatIcon';
 
 class Item extends React.Component {
     constructor(props) {
@@ -79,4 +79,4 @@ class Item extends React.Component {
     };
 }
 
-module.exports = Item;
+export default Item;

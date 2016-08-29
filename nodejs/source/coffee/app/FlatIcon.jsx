@@ -15,4 +15,4 @@ class FlatIcon extends React.Component {
     };
 }
 
-module.exports = FlatIcon;
+export default FlatIcon;

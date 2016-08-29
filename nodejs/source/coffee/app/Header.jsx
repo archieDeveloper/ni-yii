@@ -1,4 +1,4 @@
-var ButtonWithIcon = require('app/ButtonWithIcon');
+import ButtonWithIcon from 'app/ButtonWithIcon';
 
 class Header extends React.Component {
     constructor(props) {
@@ -82,4 +82,4 @@ class Header extends React.Component {
     };
 }
 
-module.exports = Header;
+export default Header;

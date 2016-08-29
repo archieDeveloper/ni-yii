@@ -1,4 +1,4 @@
-var Item = require('app/Portfolio/Item');
+import Item from 'app/Portfolio/Item';
 
 class Portfolio extends React.Component {
     constructor(props) {
@@ -20,4 +20,4 @@ class Portfolio extends React.Component {
     };
 }
 
-module.exports = Portfolio;
+export default Portfolio;

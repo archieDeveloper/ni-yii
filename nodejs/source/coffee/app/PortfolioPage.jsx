@@ -1,6 +1,6 @@
-var Header = require('app/Header');
-var Portfolio = require('app/Portfolio');
-var FlatIcon = require('app/FlatIcon');
+import Header from 'app/Header';
+import Portfolio from 'app/Portfolio';
+import FlatIcon from 'app/FlatIcon';
 
 let data = [
     {
@@ -383,4 +383,4 @@ class PortfolioPage extends React.Component {
     };
 }
 
-module.exports = PortfolioPage;
+export default PortfolioPage;

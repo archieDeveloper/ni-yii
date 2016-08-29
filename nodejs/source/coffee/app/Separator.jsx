@@ -10,4 +10,4 @@ class Separator extends React.Component {
     };
 }
 
-module.exports = Separator;
+export default Separator;

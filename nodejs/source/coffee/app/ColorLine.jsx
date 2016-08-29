@@ -20,4 +20,4 @@ class ColorLine extends React.Component {
     };
 }
 
-module.exports = ColorLine;
+export default ColorLine;
