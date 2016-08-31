@@ -16,7 +16,7 @@ module.exports = {
         loader: 'smarty'
       },
       {
-        test: /\.jsx$/,
+        test: /\.jsx|.js$/,
         loader: 'babel-loader'
       },
       {

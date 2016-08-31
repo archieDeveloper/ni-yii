@@ -1,5 +1,5 @@
-import Separator from 'app/Separator';
-import ButtonWithIcon from 'app/ButtonWithIcon';
+import Separator from 'app/components/Separator';
+import ButtonWithIcon from 'app/components/ButtonWithIcon';
 
 class SideBar extends React.Component {
 

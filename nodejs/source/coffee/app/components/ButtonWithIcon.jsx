@@ -1,4 +1,4 @@
-import FlatIcon from 'app/FlatIcon';
+import FlatIcon from 'app/components/FlatIcon';
 
 class ButtonWithIcon extends React.Component {
 

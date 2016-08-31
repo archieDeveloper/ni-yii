@@ -1,4 +1,4 @@
-import ButtonWithIcon from 'app/ButtonWithIcon';
+import ButtonWithIcon from 'app/components/ButtonWithIcon';
 
 class Header extends React.Component {
     constructor(props) {

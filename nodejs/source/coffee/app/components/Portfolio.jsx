@@ -1,4 +1,4 @@
-import Item from 'app/Portfolio/Item';
+import Item from 'app/components/Portfolio/Item';
 
 class Portfolio extends React.Component {
     constructor(props) {

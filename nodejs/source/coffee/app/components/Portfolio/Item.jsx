@@ -1,4 +1,4 @@
-import FlatIcon from 'app/FlatIcon';
+import FlatIcon from 'app/components/FlatIcon';
 
 class Item extends React.Component {
     constructor(props) {
@@ -7,6 +7,7 @@ class Item extends React.Component {
 
     static get propTypes() {
         return {
+
             //"id": React.PropTypes.number.isRequired,
             //"category_id": React.PropTypes.number.isRequired,
             //"title": React.PropTypes.string.isRequired,
