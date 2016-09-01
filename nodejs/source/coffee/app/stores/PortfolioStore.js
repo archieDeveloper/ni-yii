@@ -247,6 +247,10 @@ function search(query) {
     });
 }
 
+function closeSearch() {
+    portfolioItems = data;
+}
+
 let CHANGE_EVENT = 'change';
 
 class PortfolioStore extends EventEmitter {
@@ -279,6 +283,10 @@ AppDispatcher.register((action) => {
     switch (action.actionType) {
         case AppConstants.PORTFOLIO_SEARCH:
             search(action.query);
+            portfolioStore.emitChange();
+        break;
+        case AppConstants.PORTFOLIO_CLEAR_SEARCH:
+            closeSearch();
             portfolioStore.emitChange();
         break;
     }

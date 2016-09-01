@@ -32,14 +32,14 @@ class Header extends React.Component {
 
     toggleModeSearch(event) {
         event.preventDefault();
+        let isExistCloseSearch = this.props.onCloseSearch != null;
+        let isFunctionCloseSearch = typeof this.props.onCloseSearch === 'function';
+        if (this.state.modeSearch && isExistCloseSearch && isFunctionCloseSearch) {
+            this.props.onCloseSearch();
+        }
         this.setState({
             modeSearch: !this.state.modeSearch
         });
-        let isExistCloseSearch = this.props.onCloseSearch != null;
-        let isFunctionCloseSearch = typeof this.props.onCloseSearch === 'function';
-        if (isExistCloseSearch && isFunctionCloseSearch) {
-            this.props.onCloseSearch();
-        }
     }
 
     render() {

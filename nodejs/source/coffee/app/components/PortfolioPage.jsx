@@ -5,11 +5,6 @@ import FlatIcon from 'app/components/FlatIcon';
 import PortfolioStore from 'app/stores/PortfolioStore';
 import AppActions from 'app/actions/AppActions';
 
-function getPortfolioState() {
-    return {
-        allPortfolio: PortfolioStore.getAll()
-    };
-}
 let iconNames = [
     'align7',
     'arrow63',
@@ -113,41 +108,36 @@ let icons = iconNames.map((icon, key) => {
 class PortfolioPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = getPortfolioState();
+        this.state = this.getStateFromStore();
         this.handleSearchQuery = this.handleSearchQuery.bind(this);
         this.handleCloseSearch = this.handleCloseSearch.bind(this);
-        this._onChange = this._onChange.bind(this);
+        this.onChangeState = this.onChangeState.bind(this);
+    }
+
+    getStateFromStore() {
+        return {
+            allPortfolio: PortfolioStore.getAll()
+        }
     }
 
     componentDidMount() {
-        PortfolioStore.addChangeListener(this._onChange);
+        PortfolioStore.addChangeListener(this.onChangeState);
     }
 
     componentWillUnmount() {
-        PortfolioStore.removeChangeListener(this._onChange);
+        PortfolioStore.removeChangeListener(this.onChangeState);
     }
 
-    _onChange() {
-        this.setState(getPortfolioState());
+    onChangeState() {
+        this.setState(this.getStateFromStore());
     }
 
     handleSearchQuery(event) {
         AppActions.search(event.target.value);
-        //let searchQuery = event.target.value.toLowerCase();
-        //let displayedPortfolio = portfolioItems.filter((item) => {
-        //    let searchValue = item.title.toLowerCase();
-        //    return searchValue.indexOf(searchQuery) !== -1;
-        //});
-        //this.setState({
-        //    displayPortfolio: displayedPortfolio
-        //});
     }
 
     handleCloseSearch(event) {
-        console.log('closeSearch');
-        //this.setState({
-        //    displayPortfolio: portfolioItems
-        //})
+        AppActions.clearSearch();
     }
 
     render() {

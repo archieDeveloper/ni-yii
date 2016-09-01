@@ -542,11 +542,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function getPortfolioState() {
-	    return {
-	        allPortfolio: _PortfolioStore2.default.getAll()
-	    };
-	}
 	var iconNames = ['align7', 'arrow63', 'arrow64', 'arrow73', 'arrows4', 'ascendant', 'attachment3', 'checkmark2', 'chevron8', 'circle9', 'clockwise', 'cloud14', 'code3', 'conversation1', 'cross5', 'days', 'direction1', 'down5', 'down6', 'download12', 'edit4', 'export', 'eye8', 'feed', 'folder24', 'forward1', 'frontal', 'gaming', 'gear', 'graph3', 'graph7', 'graph8', 'headset1', 'heart10', 'help2', 'home11', 'info6', 'justify', 'left11', 'left16', 'left17', 'line4', 'loading', 'location12', 'lock5', 'loop4', 'mail5', 'map4', 'media11', 'media12', 'menu10', 'microphone6', 'mobile5', 'mobile7', 'move5', 'multimedia1', 'new8', 'next5', 'note3', 'open15', 'open16', 'outline3', 'outlined', 'phone14', 'photo7', 'plus13', 'print1', 'question2', 'rectangular1', 'reply2', 'reply4', 'return5', 'retweet1', 'search6', 'star11', 'stop4', 'tablet4', 'tablet5', 'text15', 'text2', 'thin2', 'thin6', 'thumbs9', 'thumbup', 'trash3', 'triangle4', 'upload8', 'user14', 'user15', 'view', 'view2', 'view3', 'volume12', 'volume5', 'indow12'];
 	var icons = iconNames.map(function (icon, key) {
 	    return React.createElement(_FlatIcon2.default, { key: key, iconName: icon });
@@ -560,48 +555,44 @@
 
 	        var _this = _possibleConstructorReturn(this, (PortfolioPage.__proto__ || Object.getPrototypeOf(PortfolioPage)).call(this, props));
 
-	        _this.state = getPortfolioState();
+	        _this.state = _this.getStateFromStore();
 	        _this.handleSearchQuery = _this.handleSearchQuery.bind(_this);
 	        _this.handleCloseSearch = _this.handleCloseSearch.bind(_this);
-	        _this._onChange = _this._onChange.bind(_this);
+	        _this.onChangeState = _this.onChangeState.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(PortfolioPage, [{
+	        key: 'getStateFromStore',
+	        value: function getStateFromStore() {
+	            return {
+	                allPortfolio: _PortfolioStore2.default.getAll()
+	            };
+	        }
+	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            _PortfolioStore2.default.addChangeListener(this._onChange);
+	            _PortfolioStore2.default.addChangeListener(this.onChangeState);
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
-	            _PortfolioStore2.default.removeChangeListener(this._onChange);
+	            _PortfolioStore2.default.removeChangeListener(this.onChangeState);
 	        }
 	    }, {
-	        key: '_onChange',
-	        value: function _onChange() {
-	            this.setState(getPortfolioState());
+	        key: 'onChangeState',
+	        value: function onChangeState() {
+	            this.setState(this.getStateFromStore());
 	        }
 	    }, {
 	        key: 'handleSearchQuery',
 	        value: function handleSearchQuery(event) {
 	            _AppActions2.default.search(event.target.value);
-	            //let searchQuery = event.target.value.toLowerCase();
-	            //let displayedPortfolio = portfolioItems.filter((item) => {
-	            //    let searchValue = item.title.toLowerCase();
-	            //    return searchValue.indexOf(searchQuery) !== -1;
-	            //});
-	            //this.setState({
-	            //    displayPortfolio: displayedPortfolio
-	            //});
 	        }
 	    }, {
 	        key: 'handleCloseSearch',
 	        value: function handleCloseSearch(event) {
-	            console.log('closeSearch');
-	            //this.setState({
-	            //    displayPortfolio: portfolioItems
-	            //})
+	            _AppActions2.default.clearSearch();
 	        }
 	    }, {
 	        key: 'render',
@@ -687,14 +678,14 @@
 	        key: 'toggleModeSearch',
 	        value: function toggleModeSearch(event) {
 	            event.preventDefault();
+	            var isExistCloseSearch = this.props.onCloseSearch != null;
+	            var isFunctionCloseSearch = typeof this.props.onCloseSearch === 'function';
+	            if (this.state.modeSearch && isExistCloseSearch && isFunctionCloseSearch) {
+	                this.props.onCloseSearch();
+	            }
 	            this.setState({
 	                modeSearch: !this.state.modeSearch
 	            });
-	            var isExistCloseSearch = this.props.onCloseSearch != null;
-	            var isFunctionCloseSearch = typeof this.props.onCloseSearch === 'function';
-	            if (isExistCloseSearch && isFunctionCloseSearch) {
-	                this.props.onCloseSearch();
-	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -1231,6 +1222,10 @@
 	    });
 	}
 
+	function closeSearch() {
+	    portfolioItems = data;
+	}
+
 	var CHANGE_EVENT = 'change';
 
 	var PortfolioStore = function (_EventEmitter) {
@@ -1283,6 +1278,10 @@
 	    switch (action.actionType) {
 	        case _AppConstants2.default.PORTFOLIO_SEARCH:
 	            search(action.query);
+	            portfolioStore.emitChange();
+	            break;
+	        case _AppConstants2.default.PORTFOLIO_CLEAR_SEARCH:
+	            closeSearch();
 	            portfolioStore.emitChange();
 	            break;
 	    }
@@ -2078,7 +2077,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = (0, _keymirror2.default)({
-	    PORTFOLIO_SEARCH: null
+	    PORTFOLIO_SEARCH: null,
+	    PORTFOLIO_CLEAR_SEARCH: null
 	});
 
 /***/ },
@@ -2161,19 +2161,15 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var AppActions = {
-	    // Example action
-	    //updateText: function(id, text) {
-	    //    AppDispatcher.dispatch({
-	    //        actionType: TodoConstants.TODO_UPDATE_TEXT,
-	    //        id: id,
-	    //        text: text
-	    //    });
-	    //},
-
 	    search: function search(query) {
 	        _AppDispatcher2.default.dispatch({
 	            actionType: _AppConstants2.default.PORTFOLIO_SEARCH,
 	            query: query
+	        });
+	    },
+	    clearSearch: function clearSearch() {
+	        _AppDispatcher2.default.dispatch({
+	            actionType: _AppConstants2.default.PORTFOLIO_CLEAR_SEARCH
 	        });
 	    }
 	};
